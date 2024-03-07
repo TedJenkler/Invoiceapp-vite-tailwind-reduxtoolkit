@@ -1,20 +1,22 @@
 import React, { useState } from 'react';
-import BackBtn from './components/BackBtn'; // Importing BackBtn component
-import { useSelector } from 'react-redux'; // Importing useSelector from react-redux
-import { useParams } from 'react-router-dom'; // Importing useParams from react-router-dom
-import trashcan from "./assets/trashcan.png"; // Importing trashcan image
+import BackBtn from './components/BackBtn';
+import { useSelector, useDispatch } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import trashcan from "./assets/trashcan.png";
 import { Link } from 'react-router-dom';
+import { edit } from './features/state/stateSlice';
 
 function InvoiceEdit() {
-  const { id } = useParams(); // Getting id parameter from URL
-  const state = useSelector((state) => state.state.data[id]); // Accessing state using useSelector hook
-  console.log(state); // Logging state to console
-  
-  // State variables for form inputs
+  const { id } = useParams();
+  const state = useSelector((state) => state.state.data[id]);
+  const dispatch = useDispatch();
+
   const [address, setAddress] = useState(state.senderAddress.street);
   const [city, setCity] = useState(state.senderAddress.city);
   const [postal, setPostal] = useState(state.senderAddress.postCode);
   const [country, setCountry] = useState(state.senderAddress.country);
+  const [name, setName] = useState(state.clientName)
+  const [email, setEmail] = useState(state.clientEmail)
   const [address2, setAddress2] = useState(state.clientAddress.street);
   const [city2, setCity2] = useState(state.clientAddress.city);
   const [postal2, setPostal2] = useState(state.clientAddress.postCode);
@@ -23,37 +25,56 @@ function InvoiceEdit() {
   const [net, setNet] = useState(state.paymentTerms);
   const [description, setDescription] = useState(state.description);
   const [items, setItems] = useState([...state.items]);
+  const [total, setTotal] = useState(state.total)
 
   // Function to handle changes in form inputs
   const handleInputChange = (index, fieldName, value) => {
     const updatedItems = [...items];
+    let newTotal = total;
+
     if (fieldName === 'quantity' || fieldName === 'price') {
-      // If quantity or price changes, update the total
       updatedItems[index][fieldName] = value;
       const quantity = parseFloat(updatedItems[index]['quantity']);
       const price = parseFloat(updatedItems[index]['price']);
       updatedItems[index]['total'] = (quantity * price).toFixed(2);
+      newTotal = updatedItems.reduce((acc, item) => acc + parseFloat(item.total || 0), 0);
     } else if (fieldName === 'name') {
-      // Update the name directly
       updatedItems[index] = { ...updatedItems[index], [fieldName]: value };
     } else {
-      // Otherwise, simply update the field
       updatedItems[index][fieldName] = value;
     }
+
+    setTotal(newTotal);
     setItems(updatedItems);
   };
+
+  let createdAtDate;
+if (typeof date === 'string') {
+  // If date is a string, parse it into a Date object
+  createdAtDate = new Date(date);
+} else if (date instanceof Date) {
+  // If date is already a Date object, use it directly
+  createdAtDate = date;
+} else {
+  // Handle other cases or throw an error if needed
+  throw new Error('Invalid data type for date');
+}
+
+// Calculate paymentDue by adding net days to createdAtDate
+const paymentDueDate = new Date(createdAtDate.getTime() + net * 24 * 60 * 60 * 1000);
+
+// Format paymentDueDate as a string in the desired format (e.g., YYYY-MM-DD)
+const paymentDueDateString = paymentDueDate.toISOString().split('T')[0];
 
   return (
     <main>
       <div className='pt-8 px-6 mb-6'>
-        <BackBtn /> {/* Rendering BackBtn component */}
+        <BackBtn />
       </div>
 
       <section className='px-6 flex flex-col'>
-        {/* Invoice Edit Header */}
         <h1 className='px24 text-08 mb-6'>Edit <span className='px24 text-06'>#</span>{state.id}</h1>
 
-        {/* Bill From Section */}
         <p className='px15 text-01 mb-6'>Bill From</p>
         <label className='px13 text-07 mb-2'>Street Address</label>
         <input onChange={(e) => setAddress(e.target.value)} value={address} className='border border-05 h-12 rounded mb-6 px-5'></input>
@@ -70,18 +91,17 @@ function InvoiceEdit() {
         <label className='px13 text-07 mb-2'>Country</label>
         <input onChange={(e) => setCountry(e.target.value)} value={country} className='border border-05 h-12 rounded mb-6 px-5'></input>
 
-        {/* Bill To Section */}
         <p className='px15 text-01 mb-6'>Bill To</p>
         <label className='px13 text-07 mb-2'>Client’s Name</label>
-        <input onChange={(e) => setAddress2(e.target.value)} value={address2} className='border border-05 h-12 rounded mb-6 px-5'></input>
+        <input onChange={(e) => setName(e.target.value)} value={name} className='border border-05 h-12 rounded mb-6 px-5'></input>
         <label className='px13 text-07 mb-2'>Client’s Email</label>
-        <input onChange={(e) => setCity2(e.target.value)} value={city2} className='border border-05 h-12 rounded mb-6 px-5'></input>
+        <input onChange={(e) => setEmail(e.target.value)} value={email} className='border border-05 h-12 rounded mb-6 px-5'></input>
         <label className='px13 text-07 mb-2'>Street Address</label>
-        <input onChange={(e) => setPostal2(e.target.value)} value={postal2} className='border border-05 h-12 rounded mb-6 px-5'></input>
+        <input onChange={(e) => setAddress2(e.target.value)} value={address2} className='border border-05 h-12 rounded mb-6 px-5'></input>
         <div className='flex gap-4 justify-between mb-6'>
           <div className='flex flex-col w-1/2'>
             <label className='px13 text-07 mb-2'>City</label>
-            <input onChange={(e) => setPostal2(e.target.value)} value={postal2} className='border border-05 w-full h-12 rounded px-5'></input>
+            <input onChange={(e) => setCity2(e.target.value)} value={city2} className='border border-05 w-full h-12 rounded px-5'></input>
           </div>
           <div className='flex flex-col w-1/2'>
             <label className='px13 text-07 mb-2'>Post Code</label>
@@ -91,20 +111,18 @@ function InvoiceEdit() {
         <label className='px13 text-07 mb-2'>Country</label>
         <input onChange={(e) => setCountry2(e.target.value)} value={country2} className='border border-05 h-12 rounded mb-6 px-5'></input>
 
-        {/* Invoice Details */}
         <label className='px13 text-07 mb-2'>Invoice Date</label>
         <input onChange={(e) => setDate(e.target.value)} value={date} className='border border-05 h-12 rounded mb-6 px-5' type='date'></input>
         <label className='px13 text-07 mb-2'>Payment Terms</label>
-        <select onChange={(e) => setNet(e.target.value)} value={net} className='border border-05 h-12 rounded mb-6 px-5'>
-          <option>Net 30 Days</option>
-          <option>Net 14 Days</option>
-          <option>Net 7 Days</option>
-          <option>Net 1 Day</option>
+        <select onChange={(e) => setNet(parseInt(e.target.value))} value={net} className='border border-05 h-12 rounded mb-6 px-5'>
+          <option value="30">Net 30 Days</option>
+          <option value="14">Net 14 Days</option>
+          <option value="7">Net 7 Days</option>
+          <option value="1">Net 1 Day</option>
         </select>
         <label className='px13 text-07 mb-2'>Project Description</label>
         <input onChange={(e) => {setDescription(e.target.value)}} value={description} className='border border-05 w-full h-12 rounded mb-20 px-5'></input>
 
-        {/* Item List Section */}
         <h2 className='text-lg font-bold tracking-[-0.38px] text-lightgrey mb-6'>Item List</h2>
         {items.map((item, index) => (
           <div key={index} className='flex flex-col mb-6'>
@@ -145,7 +163,7 @@ function InvoiceEdit() {
       </section>
       <div className='bg-white flex h-24 w-full justify-end px-6 gap-2'>
         <Link to={-1} className='edit'>Cancel</Link>
-        <button className='paid'>Save Changes</button>
+        <Link to="/" onClick={(e) => {dispatch(edit({index: id, clientAddressCity: city2, clientAddressCountry: country2, clientAddressPostCode: postal2, clientAddressStreet: address2, clientEmail: email, clientName: name, createdAt: date, description: description, id: state.id, items: items, paymentDue: paymentDueDateString, paymentTerms: net, senderAddressCity: city, senderAddressCountry: country, senderAddressPostCode: postal, senderAddressStreet: address, status: "pending", total: total}))}} className='paid'>Save Changes</Link>
       </div>
     </main>
   );
