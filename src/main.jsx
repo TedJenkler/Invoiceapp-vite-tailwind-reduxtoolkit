@@ -9,11 +9,16 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import Nav from './components/Nav.jsx'
+import InvoiceView from './InvoiceView.jsx'
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />
+  },
+  {
+    path: "/invoice/:id",
+    element: <InvoiceView />
   }
 ])
 

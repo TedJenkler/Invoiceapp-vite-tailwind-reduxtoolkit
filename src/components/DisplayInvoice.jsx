@@ -3,13 +3,19 @@ import { useSelector } from 'react-redux'
 import paid from "../assets/paiddot.png"
 import pending from "../assets/pendingdot.png"
 import draft from "../assets/draftdot.png"
+import { useNavigate } from 'react-router-dom'
 
 function DisplayInvoice() {
     const state = useSelector((state) => state.state.data)
-    console.log(state)
+    const navigate = useNavigate()
   return (
-    <main className='px-6'>
+    <main className='px-6 pb-28'>
         {state.map((invoice) => {
+            const handleClick = (id) => {
+                const index = state.findIndex(invoice => invoice.id === id);
+                navigate("/invoice/" + index)
+            }
+
             const dateString = invoice.createdAt;
             const date = new Date(dateString)
 
@@ -17,7 +23,7 @@ function DisplayInvoice() {
             const options = { day: '2-digit', month: 'short', year: 'numeric' };
             const formattedDate = date.toLocaleDateString('en-GB', options);
             return (
-                <div className='bg-white w-full p-6 mb-4 rounded-lg' key={invoice.id}>
+                <div onClick={() => handleClick(invoice.id)} className='bg-white w-full p-6 mb-4 rounded-lg' key={invoice.id}>
                     <div className='flex justify-between mb-6'>
                         <h1 className='px15 text-08'><span className='px15 text-07'>#</span>{invoice.id}</h1>
                         <p className='px13 text-07'>{invoice.clientName}</p>

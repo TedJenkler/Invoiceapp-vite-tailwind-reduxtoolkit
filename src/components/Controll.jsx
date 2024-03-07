@@ -3,7 +3,7 @@ import addbtn from "../assets/addbtn.svg"
 import { useSelector } from "react-redux"
 
 function Controll() {
-    const state = useSelector((state) => state.state);
+    const state = useSelector((state) => state.state.data);
   return (
     <div className='px-6 py-8 flex justify-between'>
         <div>
