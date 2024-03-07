@@ -16,4 +16,13 @@
     font-size: 0.8125rem;
     line-height: 0.9375rem;
   }
+  .edit {
+    @apply h-12 bg-ghostwhite text-07 px15 px-6 rounded-3xl;
+  }
+  .delete {
+    @apply h-12 bg-delete text-white px15 px-6 rounded-3xl;
+  }
+  .paid {
+    @apply h-12 bg-01 text-white px15 px-6 rounded-3xl;
+  }
 }
