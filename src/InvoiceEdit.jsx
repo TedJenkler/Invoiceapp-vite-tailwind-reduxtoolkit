@@ -27,7 +27,19 @@ function InvoiceEdit() {
   // Function to handle changes in form inputs
   const handleInputChange = (index, fieldName, value) => {
     const updatedItems = [...items];
-    updatedItems[index][fieldName] = value;
+    if (fieldName === 'quantity' || fieldName === 'price') {
+      // If quantity or price changes, update the total
+      updatedItems[index][fieldName] = value;
+      const quantity = parseFloat(updatedItems[index]['quantity']);
+      const price = parseFloat(updatedItems[index]['price']);
+      updatedItems[index]['total'] = (quantity * price).toFixed(2);
+    } else if (fieldName === 'name') {
+      // Update the name directly
+      updatedItems[index] = { ...updatedItems[index], [fieldName]: value };
+    } else {
+      // Otherwise, simply update the field
+      updatedItems[index][fieldName] = value;
+    }
     setItems(updatedItems);
   };
 
