@@ -1,16 +1,32 @@
 import React from 'react'
 import BackBtn from './components/BackBtn'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom';
 import paid from "./assets/paiddot.png"
 import pending from "./assets/pendingdot.png"
 import draft from "./assets/draftdot.png"
+import { remove } from './features/state/stateSlice';
+import { Link } from 'react-router-dom';
 
 function InvoiceView() {
     const { id } = useParams();
     const selectedstate = useSelector((state) => state.state.data[id])
     const totalAmount = selectedstate.items.reduce((acc, item) => acc + (item.quantity * item.price), 0);
-    console.log(selectedstate)
+    const dispatch = useDispatch()
+
+    const dateString = selectedstate.createdAt;
+            const date = new Date(dateString)
+
+            // Convert the date to the desired format
+            const options = { day: '2-digit', month: 'short', year: 'numeric' };
+            const formattedDate = date.toLocaleDateString('en-GB', options);
+
+        const dateString2 = selectedstate.paymentDue;
+            const date2 = new Date(dateString2)
+
+            // Convert the date to the desired format
+            const options2 = { day: '2-digit', month: 'short', year: 'numeric' };
+            const formattedDate2 = date2.toLocaleDateString('en-GB', options2);
   return (
     <main className='pt-8 bg-lightbg h-full'>
         <div className='mx-6'>
@@ -39,9 +55,9 @@ function InvoiceView() {
         <div className='flex'>
             <div className='mb-10'>
                 <p className='px13 text-07 mb-3'>Invoice Date</p>
-                <p className='px15 text-08 mb-8'>{selectedstate.createdAt}</p>
+                <p className='px15 text-08 mb-8'>{formattedDate}</p>
                 <p className='px13 text-07 mb-3'>Payment Due</p>
-                <p className='px15 text-08 mb-8'>{selectedstate.paymentDue}</p>
+                <p className='px15 text-08 mb-8'>{formattedDate2}</p>
                 <p className='px13 text-07 mb-3'>Sent to</p>
                 <p className='px15 text-08'>{selectedstate.clientEmail}</p>
             </div>
@@ -56,10 +72,10 @@ function InvoiceView() {
         </div>
         <div>
             <div className='bg-ghostwhite rounded-t-lg p-6 flex flex-col pb-0'>
-                {selectedstate.items.map((item) => {
+                {selectedstate.items.map((item, index) => {
                     console.log(item)
                     return (
-                        <div className='flex justify-between items-center'>
+                        <div key={index} className='flex justify-between items-center'>
                             <div>
                                 <h2 className='px15 text-08 mb-2'>{item.name}</h2>
                                 <p className='px5 text-07 mb-6'>{item.quantity} x £ {item.price}</p>
@@ -79,7 +95,7 @@ function InvoiceView() {
         </div>
         <div className='bg-white w-full h-24 flex items-center justify-center gap-2 px-6'>
             <button className='edit'>Edit</button>
-            <button className='delete'>Delete</button>
+            <Link to="/" onClick={() => {dispatch(remove({index: id}))}} className='delete'>Delete</Link>
             <button className='paid'>Mark as Paid</button>
         </div>
     </main>

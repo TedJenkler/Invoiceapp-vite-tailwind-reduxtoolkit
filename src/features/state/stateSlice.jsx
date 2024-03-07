@@ -9,12 +9,13 @@ export const stateSlice = createSlice({
     name: 'state',
     initialState,
     reducers: {
-        test: (state) => {
-
+        remove: (state, action) => {
+            const { index } = action.payload;
+            state.data.splice(index, 1);
         }
     }
 })
 
-export const { test } = stateSlice.actions
+export const { remove } = stateSlice.actions
 
 export default stateSlice.reducer
