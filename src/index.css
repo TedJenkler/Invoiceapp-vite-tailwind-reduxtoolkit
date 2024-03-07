@@ -17,12 +17,15 @@
     line-height: 0.9375rem;
   }
   .edit {
-    @apply h-12 bg-ghostwhite text-07 px15 px-6 rounded-3xl;
+    @apply h-12 bg-ghostwhite text-07 px15 px-6 rounded-3xl flex items-center justify-center;
+  }
+  .addnew {
+    @apply h-12 bg-ghostwhite text-07 px15 px-28 rounded-3xl flex items-center justify-center whitespace-nowrap;
   }
   .delete {
     @apply h-12 bg-delete text-white px15 px-6 rounded-3xl flex items-center justify-center;
   }
   .paid {
-    @apply h-12 bg-01 text-white px15 px-6 rounded-3xl;
+    @apply h-12 bg-01 text-white px15 px-6 rounded-3xl flex items-center justify-center;
   }
 }

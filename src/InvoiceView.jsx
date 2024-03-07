@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 import paid from "./assets/paiddot.png"
 import pending from "./assets/pendingdot.png"
 import draft from "./assets/draftdot.png"
-import { remove } from './features/state/stateSlice';
+import { remove, markpaid } from './features/state/stateSlice';
 import { Link } from 'react-router-dom';
 
 function InvoiceView() {
@@ -94,9 +94,9 @@ function InvoiceView() {
         </div>
         </div>
         <div className='bg-white w-full h-24 flex items-center justify-center gap-2 px-6'>
-            <button className='edit'>Edit</button>
+            <Link to={"/invoice/" + id + "/edit"} className='edit'>Edit</Link>
             <Link to="/" onClick={() => {dispatch(remove({index: id}))}} className='delete'>Delete</Link>
-            <button className='paid'>Mark as Paid</button>
+            <Link to="/" onClick={() => {dispatch(markpaid({index: id}))}} className='paid'>Mark as Paid</Link>
         </div>
     </main>
   )

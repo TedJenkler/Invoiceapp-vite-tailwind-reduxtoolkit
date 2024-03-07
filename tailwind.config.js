@@ -11,6 +11,7 @@ export default {
         'independence': '#494E6E',
         'coolgrey': '#858BB2',
         'ghostwhite': '#F9FAFE',
+        'lightgrey': '#777F98',
         'lightbg': '#F8F8FB',
         'delete': '#EC5757',
         'paid': '#33D69F',

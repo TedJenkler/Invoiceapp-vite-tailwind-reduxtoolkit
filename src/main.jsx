@@ -10,6 +10,7 @@ import {
 } from "react-router-dom";
 import Nav from './components/Nav.jsx'
 import InvoiceView from './InvoiceView.jsx'
+import InvoiceEdit from './InvoiceEdit.jsx'
 
 const router = createBrowserRouter([
   {
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
   {
     path: "/invoice/:id",
     element: <InvoiceView />
+  },
+  {
+    path: "/invoice/:id/edit",
+    element: <InvoiceEdit />
   }
 ])
 
