@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import data from "../../../data.json"
 
 const initialState = {
-    state: data
+    data
 }
 
 export const stateSlice = createSlice({

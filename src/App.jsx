@@ -1,13 +1,14 @@
 import Controll from "./components/Controll"
 import { useSelector } from "react-redux"
+import DisplayInvoice from "./components/DisplayInvoice";
 
 function App() {
-  const state = useSelector((state) => state.state.state);
-  console.log(state.length)
+  const state = useSelector((state) => state.state);
 
   return (
-    <main>
+    <main className="bg-lightbg">
       <Controll />
+      <DisplayInvoice />
     </main>
   )
 }

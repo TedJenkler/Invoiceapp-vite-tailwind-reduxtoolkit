@@ -3,12 +3,17 @@
 @tailwind utilities;
 
 @layer utilities {
-.px24 {
-  @apply text-2xl tracking-[-0.75px] font-bold;
-}
-.px13 {
+  .px24 {
+    @apply text-2xl tracking-[-0.75px] font-bold;
+  }
+  .px15 {
+    @apply tracking-[-0.25px] font-bold;
+    font-size: 0.9375rem;
+    line-height: 0.9375rem;
+  }
+  .px13 {
     @apply tracking-[-0.1px] font-medium;
-    font-size: 0,8125rem;
-    line-height: 0,9375rem;
-}
+    font-size: 0.8125rem;
+    line-height: 0.9375rem;
+  }
 }
