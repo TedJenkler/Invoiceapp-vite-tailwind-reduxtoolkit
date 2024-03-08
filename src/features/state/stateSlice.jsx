@@ -46,7 +46,7 @@ export const stateSlice = createSlice({
         },
         add: (state,action) => {
             const { clientAddressCity, clientAddressCountry, clientAddressPostCode, clientAddressStreet, clientEmail, clientName, createdAt, description, id, items, paymentDue, paymentTerms, senderAddressCity, senderAddressCountry, senderAddressPostCode, senderAddressStreet, status, total} = action.payload;
-            state.data.push({clientAddressCity: clientAddressCity, clientAddressCountry: clientAddressCountry, clientAddressPostCode: clientAddressPostCode, clientAddressStreet: clientAddressStreet, clientEmail: clientEmail, clientName: clientName, createdAt: createdAt, description: description, id: "test", items: items, paymentDue: paymentDue, paymentTerms: paymentTerms, senderAddressCity: senderAddressCity, senderAddressCountry: senderAddressCountry, senderAddressPostCode: senderAddressPostCode, senderAddressStreet: senderAddressStreet, status: status, total: total})
+            state.data.push({clientAddressCity: clientAddressCity, clientAddressCountry: clientAddressCountry, clientAddressPostCode: clientAddressPostCode, clientAddressStreet: clientAddressStreet, clientEmail: clientEmail, clientName: clientName, createdAt: createdAt, description: description, id: id, items: items, paymentDue: paymentDue, paymentTerms: paymentTerms, senderAddressCity: senderAddressCity, senderAddressCountry: senderAddressCountry, senderAddressPostCode: senderAddressPostCode, senderAddressStreet: senderAddressStreet, status: status, total: total})
         },
     }
 });

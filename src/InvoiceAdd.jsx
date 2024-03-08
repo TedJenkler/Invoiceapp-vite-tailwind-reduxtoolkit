@@ -55,6 +55,20 @@ useEffect(() => {
     setItems(updatedItems);
   };
 
+  function generateRandomId() {
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const numbers = '0123456789';
+
+    // Generate a random string of length 2 using characters
+    const randomString = Array.from({ length: 2 }, () => characters.charAt(Math.floor(Math.random() * characters.length))).join('');
+
+    // Generate a random number of length 4
+    const randomNumber = Array.from({ length: 4 }, () => numbers.charAt(Math.floor(Math.random() * numbers.length))).join('');
+
+    // Combine the random string and random number
+    return randomString + randomNumber;
+  }
+
   return (
     <main>
       <div className='pt-8 px-6 mb-6'>
@@ -149,8 +163,9 @@ useEffect(() => {
         <button onClick={() => {setItems([...items, {name: "", price: "", quantity: "", total: ""}])}} className='addnew mb-24'>+ Add New Item</button>
       </section>
       <div className='bg-white flex h-24 w-full justify-end px-6 gap-2'>
-        <Link to={-1} className='edit'>Cancel</Link>
-        <Link to="/" onClick={(e) => {dispatch(add({clientAddressCity: city2, clientAddressCountry: country2, clientAddressPostCode: postal2, clientAddressStreet: address2, clientEmail: email, clientName: name, createdAt: date, description: description, id: "", items: items, paymentDue: paymentDueDateString, paymentTerms: net, senderAddressCity: city, senderAddressCountry: country, senderAddressPostCode: postal, senderAddressStreet: address, status: "pending", total: total}))}} className='paid'>Save Changes</Link>
+        <Link to={-1} className='discard'>Discard</Link>
+        <Link to="/" onClick={(e) => {dispatch(add({clientAddressCity: city2, clientAddressCountry: country2, clientAddressPostCode: postal2, clientAddressStreet: address2, clientEmail: email, clientName: name, createdAt: date, description: description, id: generateRandomId(), items: items, paymentDue: paymentDueDateString, paymentTerms: net, senderAddressCity: city, senderAddressCountry: country, senderAddressPostCode: postal, senderAddressStreet: address, status: "draft", total: total}))}} className='savedraft'>Save as Draft</Link>
+        <Link to="/" onClick={(e) => {dispatch(add({clientAddressCity: city2, clientAddressCountry: country2, clientAddressPostCode: postal2, clientAddressStreet: address2, clientEmail: email, clientName: name, createdAt: date, description: description, id: generateRandomId(), items: items, paymentDue: paymentDueDateString, paymentTerms: net, senderAddressCity: city, senderAddressCountry: country, senderAddressPostCode: postal, senderAddressStreet: address, status: "pending", total: total}))}} className='save'>Save & Send</Link>
       </div>
     </main>
   );

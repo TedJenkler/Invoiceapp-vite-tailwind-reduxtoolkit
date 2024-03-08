@@ -26,6 +26,15 @@
     @apply h-12 bg-delete text-white px15 px-6 rounded-3xl flex items-center justify-center;
   }
   .paid {
-    @apply h-12 bg-01 text-white px15 px-6 rounded-3xl flex items-center justify-center;
+    @apply h-12 bg-01 text-white px15 px-6 rounded-3xl flex items-center justify-center whitespace-nowrap;
+  }
+  .save {
+    @apply h-12 bg-01 text-white px15 px-4 rounded-3xl flex items-center justify-center whitespace-nowrap;
+  }
+  .savedraft {
+    @apply h-12 bg-charcoal text-07 px15 px-4 rounded-3xl flex items-center justify-center whitespace-nowrap;
+  }
+  .discard {
+    @apply h-12 bg-ghostwhite text-07 px15 px-4 rounded-3xl flex items-center justify-center whitespace-nowrap;
   }
 }
