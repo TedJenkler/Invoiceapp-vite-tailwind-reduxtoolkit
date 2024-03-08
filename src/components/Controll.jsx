@@ -5,15 +5,16 @@ import { Link } from 'react-router-dom';
 
 function Controll() {
     const state = useSelector((state) => state.state.data);
+    const theme = useSelector((state) => state.state.toggleMode)
   return (
     <div className='px-6 py-8 flex justify-between'>
         <div>
-            <h1 className='text-08 px24 mb-1'>Invoices</h1>
-            <p className='text-06 px13'>{state.length} invoices</p>
+            <h1 className={theme === "light" ? 'light2 px24 mb-1' : 'dark2 px24 mb-1'}>Invoices</h1>
+            <p className={theme === "light" ? 'light3 px13' : 'dark3 px13'}>{state.length} invoices</p>
         </div>
         <div className='flex gap-4'>
             <div className='flex items-center justify-center'>
-                <select className='bg-lightbg font-bold'>
+                <select className={theme === "light" ? 'light2 font-bold' : 'dark2 font-bold'}>
                     <option>Filter</option>
                 </select>
             </div>

@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 import paid from "./assets/paiddot.png"
 import pending from "./assets/pendingdot.png"
 import draft from "./assets/draftdot.png"
-import { remove, markpaid } from './features/state/stateSlice';
+import { markpaid } from './features/state/stateSlice';
 import { Link } from 'react-router-dom';
 import ConfirmDelete from './components/ConfirmDelete';
 
@@ -14,6 +14,7 @@ function InvoiceView() {
     const selectedstate = useSelector((state) => state.state.data[id])
     const totalAmount = selectedstate.items.reduce((acc, item) => acc + (item.quantity * item.price), 0);
     const dispatch = useDispatch()
+    const theme = useSelector((state) => state.state.toggleMode)
     const [confirmDelete, setConfirmDelete] = useState(false)
 
     const dateString = selectedstate.createdAt;
@@ -30,9 +31,9 @@ function InvoiceView() {
             const options2 = { day: '2-digit', month: 'short', year: 'numeric' };
             const formattedDate2 = date2.toLocaleDateString('en-GB', options2);
   return (
-    <div className='relative'>
+    <div className="relative">
     {confirmDelete === true ? <ConfirmDelete confirmDelete={confirmDelete} setConfirmDelete={setConfirmDelete} /> : null}
-    <main className={confirmDelete === true ? 'pt-8 bg-lightbg h-full brightness-50' : 'pt-8 bg-lightbg h-full'} >
+    <main className={`pt-8 h-full ${theme === "light" ? "light2" : "dark2"} ${confirmDelete ? "brightness-50" : ""}`} >
         <div className='mx-6'>
         <BackBtn />
         </div>

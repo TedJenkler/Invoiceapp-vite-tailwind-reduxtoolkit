@@ -37,4 +37,28 @@
   .discard {
     @apply h-12 bg-ghostwhite text-07 px15 px-4 rounded-3xl flex items-center justify-center whitespace-nowrap;
   }
+  .dark1 {
+    @apply bg-03;
+  }
+  .light1 {
+    @apply bg-charcoal;
+  }
+  .dark2 {
+    @apply bg-12 text-white;
+  }
+  .light2 {
+    @apply bg-lightbg text-08;
+  }
+  .dark3 {
+    @apply text-05;
+  }
+  .light3 {
+    @apply text-06;
+  }
+  .dark4 {
+    @apply bg-03;
+  }
+  .light4 {
+    @apply bg-white;
+  }
 }

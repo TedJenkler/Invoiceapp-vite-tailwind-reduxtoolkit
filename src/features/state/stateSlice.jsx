@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import data from "../../../data.json";
 
 const initialState = {
+    toggleMode: "light",
     data
 };
 
@@ -48,9 +49,16 @@ export const stateSlice = createSlice({
             const { clientAddressCity, clientAddressCountry, clientAddressPostCode, clientAddressStreet, clientEmail, clientName, createdAt, description, id, items, paymentDue, paymentTerms, senderAddressCity, senderAddressCountry, senderAddressPostCode, senderAddressStreet, status, total} = action.payload;
             state.data.push({clientAddressCity: clientAddressCity, clientAddressCountry: clientAddressCountry, clientAddressPostCode: clientAddressPostCode, clientAddressStreet: clientAddressStreet, clientEmail: clientEmail, clientName: clientName, createdAt: createdAt, description: description, id: id, items: items, paymentDue: paymentDue, paymentTerms: paymentTerms, senderAddressCity: senderAddressCity, senderAddressCountry: senderAddressCountry, senderAddressPostCode: senderAddressPostCode, senderAddressStreet: senderAddressStreet, status: status, total: total})
         },
+        toggledarklight: (state) => {
+            if(state.toggleMode === "light"){
+                state.toggleMode = "dark"
+            }else {
+                state.toggleMode = "light"
+            }
+        }
     }
 });
 
-export const { remove, markpaid, edit, add } = stateSlice.actions;
+export const { remove, markpaid, edit, add, toggledarklight } = stateSlice.actions;
 
 export default stateSlice.reducer;
