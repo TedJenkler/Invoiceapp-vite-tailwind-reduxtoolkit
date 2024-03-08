@@ -34,26 +34,31 @@ useEffect(() => {
   setPaymentDueDateString(paymentDueDate.toISOString().split('T')[0]);
 }, [net, date]);
 
-  // Function to handle changes in form inputs
-  const handleInputChange = (index, fieldName, value) => {
-    const updatedItems = [...items];
-    let newTotal = total;
+const handleInputChange = (index, fieldName, value) => {
+  const updatedItems = [...items];
+  let newTotal = 0;
 
-    if (fieldName === 'quantity' || fieldName === 'price') {
-      updatedItems[index][fieldName] = value;
-      const quantity = parseFloat(updatedItems[index]['quantity']);
-      const price = parseFloat(updatedItems[index]['price']);
-      updatedItems[index]['total'] = (quantity * price).toFixed(2);
-      newTotal = updatedItems.reduce((acc, item) => acc + parseFloat(item.total || 0), 0);
-    } else if (fieldName === 'name') {
-      updatedItems[index] = { ...updatedItems[index], [fieldName]: value };
-    } else {
-      updatedItems[index][fieldName] = value;
-    }
+  const parsedValue = isNaN(parseFloat(value)) ? 0 : parseFloat(value);
 
-    setTotal(newTotal);
-    setItems(updatedItems);
-  };
+  if (fieldName === 'quantity' || fieldName === 'price') {
+    updatedItems[index][fieldName] = parsedValue;
+  } else if (fieldName === 'remove') {
+    // Remove the item from the array
+    updatedItems.splice(index, 1);
+  } else {
+    updatedItems[index] = { ...updatedItems[index], [fieldName]: value };
+  }
+
+  newTotal = updatedItems.reduce((acc, item) => {
+    const quantity = parseFloat(item.quantity);
+    const price = parseFloat(item.price);
+    const itemTotal = isNaN(quantity) || isNaN(price) ? 0 : quantity * price;
+    return acc + itemTotal;
+  }, 0);
+
+  setTotal(newTotal.toFixed(2));
+  setItems(updatedItems);
+};
 
   function generateRandomId() {
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -153,10 +158,15 @@ useEffect(() => {
                 </div>
                 <div>
                   <p>Total</p>
-                  <p>{item.price}</p>
+                  <p>{total}</p>
                 </div>
               </div>
-              <img className='h-4 w-3' src={trashcan} alt='trashcan' />
+              <img
+                className='h-4 w-3 cursor-pointer'
+                src={trashcan}
+                alt='trashcan'
+                onClick={() => handleInputChange(index, 'remove')} // Call handleInputChange with 'remove' fieldName
+              />
             </div>
           </div>
         ))}

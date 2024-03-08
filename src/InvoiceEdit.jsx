@@ -27,26 +27,31 @@ function InvoiceEdit() {
   const [items, setItems] = useState([...state.items]);
   const [total, setTotal] = useState(state.total)
 
-  // Function to handle changes in form inputs
-  const handleInputChange = (index, fieldName, value) => {
-    const updatedItems = [...items];
-    let newTotal = total;
+const handleInputChange = (index, fieldName, value) => {
+  const updatedItems = [...items];
+  let newTotal = 0;
 
-    if (fieldName === 'quantity' || fieldName === 'price') {
-      updatedItems[index][fieldName] = value;
-      const quantity = parseFloat(updatedItems[index]['quantity']);
-      const price = parseFloat(updatedItems[index]['price']);
-      updatedItems[index]['total'] = (quantity * price).toFixed(2);
-      newTotal = updatedItems.reduce((acc, item) => acc + parseFloat(item.total || 0), 0);
-    } else if (fieldName === 'name') {
-      updatedItems[index] = { ...updatedItems[index], [fieldName]: value };
-    } else {
-      updatedItems[index][fieldName] = value;
-    }
+  const parsedValue = isNaN(parseFloat(value)) ? 0 : parseFloat(value);
 
-    setTotal(newTotal);
-    setItems(updatedItems);
-  };
+  if (fieldName === 'quantity' || fieldName === 'price') {
+    updatedItems[index][fieldName] = parsedValue;
+  } else if (fieldName === 'remove') {
+    // Remove the item from the array
+    updatedItems.splice(index, 1);
+  } else {
+    updatedItems[index] = { ...updatedItems[index], [fieldName]: value };
+  }
+
+  newTotal = updatedItems.reduce((acc, item) => {
+    const quantity = parseFloat(item.quantity);
+    const price = parseFloat(item.price);
+    const itemTotal = isNaN(quantity) || isNaN(price) ? 0 : quantity * price;
+    return acc + itemTotal;
+  }, 0);
+
+  setTotal(newTotal.toFixed(2));
+  setItems(updatedItems);
+};
 
   let createdAtDate;
 if (typeof date === 'string') {
@@ -127,35 +132,40 @@ const paymentDueDateString = paymentDueDate.toISOString().split('T')[0];
         {items.map((item, index) => (
           <div key={index} className='flex flex-col mb-6'>
             <label className='px13 text-07 mb-2'>Item Name</label>
-            <input 
-              value={item.name} 
-              onChange={(e) => handleInputChange(index, 'name', e.target.value)} 
+            <input
+              value={item.name}
+              onChange={(e) => handleInputChange(index, 'name', e.target.value)}
               className='border border-05 h-12 rounded mb-6'
             ></input>
             <div className='flex justify-between items-center'>
               <div className='flex items-center'>
                 <div className='flex flex-col w-16 mr-4'>
                   <label>Qty.</label>
-                  <input 
-                    value={item.quantity} 
-                    onChange={(e) => handleInputChange(index, 'quantity', e.target.value)} 
+                  <input
+                    value={item.quantity}
+                    onChange={(e) => handleInputChange(index, 'quantity', e.target.value)}
                     className='border border-05 h-12 rounded'
                   ></input>
                 </div>
                 <div className='flex flex-col w-24 mr-4'>
                   <label>Price</label>
-                  <input 
-                    value={item.price} 
-                    onChange={(e) => handleInputChange(index, 'price', e.target.value)} 
+                  <input
+                    value={item.price}
+                    onChange={(e) => handleInputChange(index, 'price', e.target.value)}
                     className='border border-05 h-12 rounded'
                   ></input>
                 </div>
                 <div>
                   <p>Total</p>
-                  <p>{item.price}</p>
+                  <p>{total}</p>
                 </div>
               </div>
-              <img className='h-4 w-3' src={trashcan} alt='trashcan' />
+              <img
+                className='h-4 w-3 cursor-pointer'
+                src={trashcan}
+                alt='trashcan'
+                onClick={() => handleInputChange(index, 'remove')} // Call handleInputChange with 'remove' fieldName
+              />
             </div>
           </div>
         ))}
