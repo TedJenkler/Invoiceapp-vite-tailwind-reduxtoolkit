@@ -19,6 +19,9 @@
   .edit {
     @apply h-12 bg-ghostwhite text-07 px15 px-6 rounded-3xl flex items-center justify-center;
   }
+  .darkedit {
+    @apply h-12 bg-04 text-05 px15 px-6 rounded-3xl flex items-center justify-center;
+  }
   .addnew {
     @apply h-12 bg-ghostwhite text-07 px15 px-28 rounded-3xl flex items-center justify-center whitespace-nowrap;
   }
