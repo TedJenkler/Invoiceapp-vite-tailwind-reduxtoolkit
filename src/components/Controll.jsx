@@ -1,6 +1,7 @@
 import React from 'react'
 import addbtn from "../assets/addbtn.svg"
 import { useSelector } from "react-redux"
+import { Link } from 'react-router-dom';
 
 function Controll() {
     const state = useSelector((state) => state.state.data);
@@ -16,9 +17,9 @@ function Controll() {
                     <option>Filter</option>
                 </select>
             </div>
-            <div className='flex items-center justify-center'>
+            <Link to="/invoice/add" className='flex items-center justify-center'>
                 <img src={addbtn} alt='addbtn' />
-            </div>
+            </Link>
         </div>
     </div>
   )

@@ -11,6 +11,7 @@ import {
 import Nav from './components/Nav.jsx'
 import InvoiceView from './InvoiceView.jsx'
 import InvoiceEdit from './InvoiceEdit.jsx'
+import InvoiceAdd from './InvoiceAdd.jsx'
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
   {
     path: "/invoice/:id/edit",
     element: <InvoiceEdit />
+  },
+  {
+    path: "/invoice/add",
+    element: <InvoiceAdd />
   }
 ])
 
