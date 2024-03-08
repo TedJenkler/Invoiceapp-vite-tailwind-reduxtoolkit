@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import BackBtn from './components/BackBtn'
 import { useSelector, useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom';
@@ -7,12 +7,14 @@ import pending from "./assets/pendingdot.png"
 import draft from "./assets/draftdot.png"
 import { remove, markpaid } from './features/state/stateSlice';
 import { Link } from 'react-router-dom';
+import ConfirmDelete from './components/ConfirmDelete';
 
 function InvoiceView() {
     const { id } = useParams();
     const selectedstate = useSelector((state) => state.state.data[id])
     const totalAmount = selectedstate.items.reduce((acc, item) => acc + (item.quantity * item.price), 0);
     const dispatch = useDispatch()
+    const [confirmDelete, setConfirmDelete] = useState(false)
 
     const dateString = selectedstate.createdAt;
             const date = new Date(dateString)
@@ -28,7 +30,9 @@ function InvoiceView() {
             const options2 = { day: '2-digit', month: 'short', year: 'numeric' };
             const formattedDate2 = date2.toLocaleDateString('en-GB', options2);
   return (
-    <main className='pt-8 bg-lightbg h-full'>
+    <div className='relative'>
+    {confirmDelete === true ? <ConfirmDelete confirmDelete={confirmDelete} setConfirmDelete={setConfirmDelete} /> : null}
+    <main className={confirmDelete === true ? 'pt-8 bg-lightbg h-full brightness-50' : 'pt-8 bg-lightbg h-full'} >
         <div className='mx-6'>
         <BackBtn />
         </div>
@@ -95,10 +99,11 @@ function InvoiceView() {
         </div>
         <div className='bg-white w-full h-24 flex items-center justify-center gap-2 px-6'>
             <Link to={"/invoice/" + id + "/edit"} className='edit'>Edit</Link>
-            <Link to="/" onClick={() => {dispatch(remove({index: id}))}} className='delete'>Delete</Link>
+            <button onClick={() => setConfirmDelete(true)} className='delete'>Delete</button>
             <Link to="/" onClick={() => {dispatch(markpaid({index: id}))}} className='paid'>Mark as Paid</Link>
         </div>
     </main>
+    </div>
   )
 }
 
