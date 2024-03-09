@@ -5,12 +5,12 @@ import pending from "../assets/pendingdot.png"
 import draft from "../assets/draftdot.png"
 import { useNavigate } from 'react-router-dom'
 
-function DisplayInvoice() {
+function DisplayInvoiceMobile() {
     const state = useSelector((state) => state.state.data)
     const theme = useSelector((state) => state.state.toggleMode)
     const navigate = useNavigate()
   return (
-    <main className={theme === "light" ? 'light2 px-6 pb-28' : 'dark2 px-6 pb-28'}>
+    <main className={theme === "light" ? 'light2 px-6 pb-28 md:hidden md:absolute' : 'dark2 px-6 pb-28 md:hidden md:absolute'}>
         {state.map((invoice) => {
             const handleClick = (id) => {
                 const index = state.findIndex(invoice => invoice.id === id);
@@ -46,4 +46,4 @@ function DisplayInvoice() {
   )
 }
 
-export default DisplayInvoice
+export default DisplayInvoiceMobile
