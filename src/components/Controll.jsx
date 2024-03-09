@@ -7,10 +7,11 @@ function Controll() {
     const state = useSelector((state) => state.state.data);
     const theme = useSelector((state) => state.state.toggleMode)
   return (
-    <div className='px-6 py-8 flex justify-between'>
+    <div className='px-6 py-8 flex justify-between md:px-12'>
         <div>
-            <h1 className={theme === "light" ? 'light2 px24 mb-1' : 'dark2 px24 mb-1'}>Invoices</h1>
-            <p className={theme === "light" ? 'light3 px13' : 'dark3 px13'}>{state.length} invoices</p>
+            <h1 className={theme === "light" ? 'light2 px24 mb-1 md:px36' : 'dark2 px24 mb-1 md:px36'}>Invoices</h1>
+            <p className={theme === "light" ? 'light3 px13 md:hidden md:absolute' : 'dark3 px13 md:hidden md:absolute'}>{state.length} invoices</p>
+            <p className={theme === "light" ? 'light3 px13 hidden absolute md:flex md:relative' : 'dark3 px13 hidden absolute md:flex md:relative'}>There are {state.length} invoices total invoices</p>
         </div>
         <div className='flex gap-4'>
             <div className='flex items-center justify-center'>
