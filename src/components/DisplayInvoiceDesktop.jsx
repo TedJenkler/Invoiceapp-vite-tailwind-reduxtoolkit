@@ -33,7 +33,7 @@ function DisplayInvoiceDesktop() {
                     </div>
                     <div className='flex items-center'>
                         <p className={theme === "light" ? 'text-08 px15 mr-10' : 'px15 text-white mr-10'}>£{invoice.total}</p>
-                        <div className={invoice.status === "paid" ? "bg-paid/10 w-24 h-10 flex justify-center items-center rounded-md gap-1 mr-5" : invoice.status === "pending" ? "bg-pending/10 w-24 h-10 flex justify-center items-center rounded-md gap-1 mr-5" : invoice.status === "draft" ? "bg-draft/10 w-24 h-10 flex justify-center items-center rounded-md gap-1" : null}>
+                        <div className={invoice.status === "paid" ? "bg-paid/10 w-24 h-10 flex justify-center items-center rounded-md gap-1 mr-5" : invoice.status === "pending" ? "bg-pending/10 w-24 h-10 flex justify-center items-center rounded-md gap-1 mr-5" : invoice.status === "draft" ? "bg-draft/10 w-24 h-10 flex justify-center items-center rounded-md gap-1 mr-5" : null}>
                             <img src={invoice.status === "paid" ? paid : invoice.status === "pending" ? pending : invoice.status === "draft" ? draft : null} alt={invoice.status === "paid" ? paid : invoice.status === "pending" ? pending : invoice.status === "draft" ? draft : null} />
                             <p className={invoice.status === "paid" ? "px15 text-paid" : invoice.status === "pending" ? "px15 text-pending" : invoice.status === "draft" ? "px15 text-draft" : null}>{invoice.status.charAt(0).toUpperCase() + invoice.status.slice(1)}</p>
                         </div>
