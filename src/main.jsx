@@ -35,8 +35,14 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Provider store={store}>
-      <Nav />
-      <RouterProvider router={router} />
+      <div className='xl:flex xl:w-full xl:h-full'>
+        <div className='xl:h-screen xl:overflow-hidden xl:w-28'>
+          <Nav />
+        </div>
+        <div className='xl:w-full xl:overflow-scroll'>
+          <RouterProvider router={router} />
+        </div>
+      </div>
     </Provider>
   </React.StrictMode>,
 )

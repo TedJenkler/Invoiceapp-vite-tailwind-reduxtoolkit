@@ -1,17 +1,22 @@
-import React from 'react'
-import empty from "../assets/empty.png"
-import { useSelector } from 'react-redux'
+import React from 'react';
+import empty from "../assets/empty.png";
+import { useSelector } from 'react-redux';
 
 function NoInvoice() {
-  const theme = useSelector((state) => state.state.toggleMode)
+  const theme = useSelector((state) => state.state.toggleMode);
+  const mainClass = `h-full ${theme === "light" ? 'light02' : 'dark02'} flex flex-col items-center pt-24`;
+  const headingClass = `mb-6 px24 ${theme === "light" ? 'text-08' : 'text-white'}`;
+  const paragraphClass = `px13 ${theme === "light" ? 'text-06' : 'text-05'}`;
+
   return (
-    <main className={theme === "light" ? 'h-full light02 flex flex-col items-center pt-24' : 'h-full dark02 flex flex-col items-center pt-24'}>
+    <main className={mainClass}>
         <img className='mb-10' src={empty} alt='empty' />
-        <h1 className={theme === "light" ? 'mb-6 px24 text-08' : 'mb-6 px24 text-white'}>There is nothing here</h1>
-        <p className={theme === "light" ? 'px13 text-06' : 'px13 text-05'}>Create an invoice by clicking the </p>
-        <p className={theme === "light" ? 'px13 text-06' : 'px13 text-05'}>New button and get started</p>
+        <h1 className={headingClass}>There is nothing here</h1>
+        <p className={paragraphClass}>Create an invoice by clicking the </p>
+        <p className={`${paragraphClass} xl:hidden xl:absolute`}>New button and get started</p>
+        <p className={`${paragraphClass} hidden absolute xl:flex xl:relative`}>New Invoice button and get started</p>
     </main>
-  )
+  );
 }
 
-export default NoInvoice
+export default NoInvoice;

@@ -11,7 +11,7 @@ function ConfirmDelete({ ConfirmDelete, setConfirmDelete }) {
     const dispatch = useDispatch();
 
     return (
-        <div className={`absolute p-8 left-6 right-6 top-1/4 bg-${theme === "light" ? "white" : "03"} z-50 rounded-lg md:mx-36 md:p-12`}>
+        <div className={`absolute p-8 left-6 right-6 top-1/4 bg-${theme === "light" ? "white" : "03"} z-50 rounded-lg md:mx-36 md:p-12 xl:mx-96`}>
             <h1 className={`mb-6 px24 text-${theme === "light" ? "08" : "white"} md:mb-3`}>Confirm Deletion</h1>
             <p className="px13 text-06 mb-2 md:hidden md:absolute">Are you sure you want to delete invoice</p>
             <p className="px13 text-06 mb-6 md:hidden md:absolute">#{idvalue}? This action cannot be undone.</p>

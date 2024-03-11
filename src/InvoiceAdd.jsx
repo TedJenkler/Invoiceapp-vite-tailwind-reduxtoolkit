@@ -81,11 +81,11 @@ function InvoiceAdd() {
 
   return (
     <main className={`${theme === "light" ? "light2" : "dark2"}`}>
-      <div className='pt-8 px-6 mb-6 md:px-14'>
+      <div className='pt-8 px-6 mb-6 md:px-14 xl:px-60 xl:pt-16'>
         <BackBtn />
       </div>
 
-      <section className='px-6 flex flex-col md:px-14'>
+      <section className='px-6 flex flex-col md:px-14 xl:px-60'>
         <p className='px15 text-01 mb-6'>Bill From</p>
         <label className={`${theme === "light" ? 'px13 text-07' : 'px13 text-06'} mb-2`}>Street Address</label>
         <input onChange={(e) => setAddress(e.target.value)} value={address} className={`${theme === "light" ? 'light4' : 'dark4'} border border-${theme === "light" ? "05" : "03"} h-12 rounded mb-6 px-5`}></input>
@@ -242,7 +242,7 @@ function InvoiceAdd() {
         </div>
         <button onClick={() => {setItems([...items, {name: "", price: "", quantity: "", total: ""}])}} className={`${theme === "light" ? 'addnew mb-24' : 'darkaddnew mb-24'}`}>+ Add New Item</button>
       </section>
-      <div className={`${theme === "light" ? 'light4' : 'dark4'} flex h-24 w-full items-center justify-end px-6 gap-2 md:bg-transparent md:justify-between md:px-14`}>
+      <div className={`${theme === "light" ? 'light4' : 'dark4'} flex h-24 w-full items-center justify-end px-6 gap-2 md:bg-transparent md:justify-between md:px-14 xl:px-60`}>
         <Link to={-1} className={`${theme === "light" ? "discard" : "darkdiscard"}`}>Discard</Link>
         <div className='flex gap-2'>
           <Link to="/" onClick={(e) => {dispatch(add({clientAddressCity: city2, clientAddressCountry: country2, clientAddressPostCode: postal2, clientAddressStreet: address2, clientEmail: email, clientName: name, createdAt: date, description: description, id: generateRandomId(), items: items, paymentDue: paymentDueDateString, paymentTerms: net, senderAddressCity: city, senderAddressCountry: country, senderAddressPostCode: postal, senderAddressStreet: address, status: "draft", total: total}))}} className={`${theme === "light" ? "savedraft" : "darksavedraft"}`}>Save as Draft</Link>
