@@ -11,23 +11,23 @@ function InvoiceAdd() {
   const theme = useSelector((state) => state.state.toggleMode)
   const navigate = useNavigate()
 
-  const [address, setAddress] = useState();
-  const [city, setCity] = useState();
-  const [postal, setPostal] = useState();
-  const [country, setCountry] = useState();
-  const [name, setName] = useState()
-  const [email, setEmail] = useState()
-  const [address2, setAddress2] = useState();
-  const [city2, setCity2] = useState();
-  const [postal2, setPostal2] = useState();
-  const [country2, setCountry2] = useState();
+  const [address, setAddress] = useState("");
+  const [city, setCity] = useState("");
+  const [postal, setPostal] = useState("");
+  const [country, setCountry] = useState("");
+  const [name, setName] = useState("")
+  const [email, setEmail] = useState("")
+  const [address2, setAddress2] = useState("");
+  const [city2, setCity2] = useState("");
+  const [postal2, setPostal2] = useState("");
+  const [country2, setCountry2] = useState("");
   const currentDate = new Date(); // Get the current date
   const formattedDate = currentDate.toISOString().split('T')[0]; // Format the date as YYYY-MM-DD
   const [date, setDate] = useState(formattedDate); // Set the initial state value
-  const [net, setNet] = useState();
-  const [description, setDescription] = useState();
+  const [net, setNet] = useState("");
+  const [description, setDescription] = useState("");
   const [items, setItems] = useState([]);
-  const [total, setTotal] = useState()
+  const [total, setTotal] = useState("")
   const [paymentDueDateString, setPaymentDueDateString] = useState('');
   const [errorAddress, setErrorAddress] = useState(false)
   const [errorCity, setErrorCity] = useState(false);
@@ -80,7 +80,7 @@ function InvoiceAdd() {
       setErrorName(false);
       count++;
     }
-    if (email === "") {
+    if (email === "" && email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/)) {
       setErrorEmail(true);
     } else {
       setErrorEmail(false);
@@ -185,41 +185,112 @@ function InvoiceAdd() {
 
       <section className='px-6 flex flex-col md:px-14 xl:px-60'>
         <p className='px15 text-01 mb-6'>Bill From</p>
-        <label className={`${theme === "light" ? 'px13 text-07' : 'px13 text-06'} mb-2`}>Street Address</label>
-        <input onChange={(e) => setAddress(e.target.value)} value={address} className={`${theme === "light" ? 'light4' : 'dark4'} border border-${theme === "light" ? "05" : "03"} h-12 rounded mb-6 px-5`}></input>
+        <label className={`${theme === "light" ? 'px13 text-07' : 'px13 text-06'} mb-2 relative`}>
+          <span className={errorAddress ? "text-red" : "text-07"}>Street Address</span>
+          <span className={errorAddress ? "flex absolute right-4 top-0 text-red" : "hidden absolute"}>can’t be empty</span>
+        </label>
+        <input
+          onChange={(e) => setAddress(e.target.value)}
+          value={address}
+          className={`${theme === "light" ? 'light4' : 'dark4'} ${errorAddress ? "outline outline-red" : "outline-none"} border border-${theme === "light" ? "05" : "03"} h-12 rounded mb-6 px-5`}
+        ></input>
         <div className='flex gap-4 justify-between mb-6'>
           <div className='flex flex-col w-1/2'>
-            <label className={`${theme === "light" ? 'px13 text-07' : 'px13 text-06'} mb-2`}>City</label>
-            <input onChange={(e) => setCity(e.target.value)} value={city} className={`${theme === "light" ? 'light4' : 'dark4'} border border-${theme === "light" ? "05" : "03"} w-full h-12 rounded px-5`}></input>
+            <label className={`${theme === "light" ? 'px13 text-07' : 'px13 text-06'} mb-2 relative`}>
+              <span className={errorCity ? "text-red" : "text-07"}>City</span>
+              {errorCity && <span className="flex absolute right-4 top-0 text-red">can’t be empty</span>}
+            </label>
+            <input
+              onChange={(e) => setCity(e.target.value)}
+              value={city}
+              className={`${theme === "light" ? 'light4' : 'dark4'} ${errorCity ? "outline outline-red" : "outline-none"} border border-${theme === "light" ? "05" : "03"} w-full h-12 rounded px-5`}
+            />
           </div>
           <div className='flex flex-col w-1/2'>
-            <label className={`${theme === "light" ? 'px13 text-07' : 'px13 text-06'} mb-2`}>Post Code</label>
-            <input onChange={(e) => setPostal(e.target.value)} value={postal} className={`${theme === "light" ? 'light4' : 'dark4'} border border-${theme === "light" ? "05" : "03"} w-full h-12 rounded px-5`}></input>
+            <label className={`${theme === "light" ? 'px13 text-07' : 'px13 text-06'} mb-2 relative`}>
+              <span className={errorPostal ? "text-red" : "text-07"}>Post Code</span>
+              {errorPostal && <span className="flex absolute right-4 top-0 text-red">can’t be empty</span>}
+            </label>
+            <input
+              onChange={(e) => setPostal(e.target.value)}
+              value={postal}
+              className={`${theme === "light" ? 'light4' : 'dark4'} ${errorPostal ? "outline outline-red" : "outline-none"} border border-${theme === "light" ? "05" : "03"} w-full h-12 rounded px-5`}
+            />
           </div>
         </div>
-        <label className={`${theme === "light" ? 'px13 text-07' : 'px13 text-06'} mb-2`}>Country</label>
-        <input onChange={(e) => setCountry(e.target.value)} value={country} className={`${theme === "light" ? 'light4' : 'dark4'} border border-${theme === "light" ? "05" : "03"} h-12 rounded mb-6 px-5`}></input>
-
+        <label className={`${theme === "light" ? 'px13 text-07' : 'px13 text-06'} mb-2 relative`}>
+          <span className={errorCountry ? "text-red" : "text-07"}>Country</span>
+          {errorCountry && <span className="flex absolute right-4 top-0 text-red">can’t be empty</span>}
+        </label>
+        <input
+          onChange={(e) => setCountry(e.target.value)}
+          value={country}
+          className={`${theme === "light" ? 'light4' : 'dark4'} ${errorCountry ? "outline outline-red" : "outline-none"} border border-${theme === "light" ? "05" : "03"} h-12 rounded mb-6 px-5`}
+        />
         <p className='px15 text-01 mb-6'>Bill To</p>
-        <label className={`${theme === "light" ? 'px13 text-07' : 'px13 text-06'} mb-2`}>Client’s Name</label>
-        <input onChange={(e) => setName(e.target.value)} value={name} className={`${theme === "light" ? 'light4' : 'dark4'} border border-${theme === "light" ? "05" : "03"} h-12 rounded mb-6 px-5`}></input>
-        <label className={`${theme === "light" ? 'px13 text-07' : 'px13 text-06'} mb-2`}>Client’s Email</label>
-        <input placeholder='e.g. email@example.com' onChange={(e) => setEmail(e.target.value)} value={email} className={`${theme === "light" ? 'light4' : 'dark4'} border border-${theme === "light" ? "05" : "03"} h-12 rounded mb-6 px-5`}></input>
-        <label className={`${theme === "light" ? 'px13 text-07' : 'px13 text-06'} mb-2`}>Street Address</label>
-        <input onChange={(e) => setAddress2(e.target.value)} value={address2} className={`${theme === "light" ? 'light4' : 'dark4'} border border-${theme === "light" ? "05" : "03"} h-12 rounded mb-6 px-5`}></input>
+        <label className={`${theme === "light" ? 'px13 text-07' : 'px13 text-06'} mb-2 relative`}>
+          <span className={errorName ? "text-red" : "text-07"}>Client’s Name</span>
+          {errorName && <span className="flex absolute right-4 top-0 text-red">can’t be empty</span>}
+        </label>
+        <input
+          onChange={(e) => setName(e.target.value)}
+          value={name}
+          className={`${theme === "light" ? 'light4' : 'dark4'} ${errorName ? "outline outline-red" : "outline-none"} border border-${theme === "light" ? "05" : "03"} h-12 rounded mb-6 px-5`}
+        />
+
+        <label className={`${theme === "light" ? 'px13 text-07' : 'px13 text-06'} mb-2 relative`}>
+          <span className={errorEmail ? "text-red" : "text-07"}>Client’s Email</span>
+          {errorEmail && <span className="flex absolute right-4 top-0 text-red">can’t be empty</span>}
+        </label>
+        <input
+          placeholder='e.g. email@example.com'
+          onChange={(e) => setEmail(e.target.value)}
+          value={email}
+          className={`${theme === "light" ? 'light4' : 'dark4'} ${errorEmail ? "outline outline-red" : "outline-none"} border border-${theme === "light" ? "05" : "03"} h-12 rounded mb-6 px-5`}
+        />
+
+        <label className={`${theme === "light" ? 'px13 text-07' : 'px13 text-06'} mb-2 relative`}>
+          <span className={errorAddress2 ? "text-red" : "text-07"}>Street Address</span>
+          {errorAddress2 && <span className="flex absolute right-4 top-0 text-red">can’t be empty</span>}
+        </label>
+        <input
+          onChange={(e) => setAddress2(e.target.value)}
+          value={address2}
+          className={`${theme === "light" ? 'light4' : 'dark4'} ${errorAddress2 ? "outline outline-red" : "outline-none"} border border-${theme === "light" ? "05" : "03"} h-12 rounded mb-6 px-5`}
+        />
         <div className='flex gap-4 justify-between mb-6'>
           <div className='flex flex-col w-1/2'>
-            <label className={`${theme === "light" ? 'px13 text-07' : 'px13 text-06'} mb-2`}>City</label>
-            <input onChange={(e) => setCity2(e.target.value)} value={city2} className={`${theme === "light" ? 'light4' : 'dark4'} border border-${theme === "light" ? "05" : "03"} w-full h-12 rounded px-5`}></input>
+            <label className={`${theme === "light" ? 'px13 text-07' : 'px13 text-06'} mb-2 relative ${errorCity2 ? 'text-red' : ''}`}>
+              City
+              {errorCity2 && <span className="flex absolute right-4 top-0 text-red">can’t be empty</span>}
+            </label>
+            <input
+              onChange={(e) => setCity2(e.target.value)}
+              value={city2}
+              className={`${theme === "light" ? 'light4' : 'dark4'} ${errorCity2 ? "outline outline-red" : "outline-none"} border border-${theme === "light" ? "05" : "03"} w-full h-12 rounded px-5`}
+            />
           </div>
           <div className='flex flex-col w-1/2'>
-            <label className={`${theme === "light" ? 'px13 text-07' : 'px13 text-06'} mb-2`}>Post Code</label>
-            <input onChange={(e) => setPostal2(e.target.value)} value={postal2} className={`${theme === "light" ? 'light4' : 'dark4'} border border-${theme === "light" ? "05" : "03"} w-full h-12 rounded px-5`}></input>
+            <label className={`${theme === "light" ? 'px13 text-07' : 'px13 text-06'} mb-2 relative ${errorPostal2 ? 'text-red' : ''}`}>
+              Post Code
+              {errorPostal2 && <span className="flex absolute right-4 top-0 text-red">can’t be empty</span>}
+            </label>
+            <input
+              onChange={(e) => setPostal2(e.target.value)}
+              value={postal2}
+              className={`${theme === "light" ? 'light4' : 'dark4'} ${errorPostal2 ? "outline outline-red" : "outline-none"} border border-${theme === "light" ? "05" : "03"} w-full h-12 rounded px-5`}
+            />
           </div>
         </div>
-        <label className={`${theme === "light" ? 'px13 text-07' : 'px13 text-06'} mb-2`}>Country</label>
-        <input onChange={(e) => setCountry2(e.target.value)} value={country2} className={`${theme === "light" ? 'light4' : 'dark4'} border border-${theme === "light" ? "05" : "03"} h-12 rounded mb-6 px-5`}></input>
-
+        <label className={`${theme === "light" ? 'px13 text-07' : 'px13 text-06'} mb-2 relative ${errorCountry2 ? 'text-red' : ''}`}>
+          Country
+          {errorCountry2 && <span className="flex absolute right-4 top-0 text-red">can’t be empty</span>}
+        </label>
+        <input
+          onChange={(e) => setCountry2(e.target.value)}
+          value={country2}
+          className={`${theme === "light" ? 'light4' : 'dark4'} ${errorCountry2 ? "outline outline-red" : "outline-none"} border border-${theme === "light" ? "05" : "03"} h-12 rounded mb-6 px-5`}
+        />
         <label className={`${theme === "light" ? 'px13 text-07' : 'px13 text-06'} mb-2`}>Invoice Date</label>
         <input onChange={(e) => setDate(e.target.value)} value={date} className={`${theme === "light" ? 'light4' : 'dark4'} border border-${theme === "light" ? "05" : "03"} h-12 rounded mb-6 px-5`} type='date'></input>
         <label className={`${theme === "light" ? 'px13 text-07' : 'px13 text-06'} mb-2`}>Payment Terms</label>
@@ -229,9 +300,16 @@ function InvoiceAdd() {
           <option value="7">Net 7 Days</option>
           <option value="1">Net 1 Day</option>
         </select>
-        <label className={`${theme === "light" ? 'px13 text-07' : 'px13 text-06'} mb-2`}>Project Description</label>
-        <input placeholder='e.g. Graphic Design Service' onChange={(e) => {setDescription(e.target.value)}} value={description} className={`${theme === "light" ? 'light4' : 'dark4'} border border-${theme === "light" ? "05" : "03"} h-12 rounded mb-20 px-5`}></input>
-
+        <label className={`${theme === "light" ? 'px13 text-07' : 'px13 text-06'} mb-2 relative ${errorDescription ? 'text-red' : ''}`}>
+          Project Description
+          {errorDescription && <span className="flex absolute right-4 top-0 text-red">can’t be empty</span>}
+        </label>
+        <input
+          placeholder='e.g. Graphic Design Service'
+          onChange={(e) => { setDescription(e.target.value) }}
+          value={description}
+          className={`${theme === "light" ? 'light4' : 'dark4'} ${errorDescription ? "outline outline-red" : "outline-none"} border border-${theme === "light" ? "05" : "03"} h-12 rounded mb-20 px-5`}
+        />
         <h2 className='text-lg font-bold tracking-[-0.38px] text-lightgrey mb-6'>Item List</h2>
         {items.map((item, index) => (
           <div key={index} className='flex flex-col mb-6 md:hidden md:absolute'>
@@ -324,30 +402,41 @@ function InvoiceAdd() {
               </div>
             </div>
             <div className='md:w-1/12 flex flex-col justify-end'>
-              {items.map((item, index) => (
-                <div key={`trashcan-container-${index}`} style={{ height: '48px' }} className="trashcan-container mb-4 flex items-center justify-end">
-                  <img
-                    key={`trashcan-${index}`}
-                    className='h-4 w-3 cursor-pointer'
-                    src={trashcan}
-                    alt='trashcan'
-                    onClick={() => handleInputChange(index, 'remove')}
-                  />
-                </div>
-              ))}
+          {items.map((item, index) => (
+            <div key={`trashcan-container-${index}`} style={{ height: '48px' }} className="trashcan-container mb-4 flex items-center justify-end">
+              <img
+                key={`trashcan-${index}`}
+                className='h-4 w-3 cursor-pointer'
+                src={trashcan}
+                alt='trashcan'
+                onClick={() => handleInputChange(index, 'remove')}
+              />
             </div>
-          </div>
-        </div>
-        <button onClick={() => {setItems([...items, {name: "", price: "", quantity: "", total: ""}])}} className={`${theme === "light" ? 'addnew mb-24' : 'darkaddnew mb-24'}`}>+ Add New Item</button>
-      </section>
-      <div className={`${theme === "light" ? 'light4' : 'dark4'} flex h-24 w-full items-center justify-end px-6 gap-2 md:bg-transparent md:justify-between md:px-14 xl:px-60`}>
-        <Link to={-1} className={`${theme === "light" ? "discard" : "darkdiscard"}`}>Discard</Link>
-        <div className='flex gap-2'>
-          <button onClick={(e) => {handleValidation("draft")}} className={`${theme === "light" ? "savedraft" : "darksavedraft"}`}>Save as Draft</button>
-          <button onClick={(e) => {handleValidation("add")}} className='save'>Save & Send</button>
+          ))}
         </div>
       </div>
-    </main>
+    </div>
+    <button onClick={() => { setItems([...items, { name: "", price: "", quantity: "", total: "" }]) }} className={`${theme === "light" ? 'addnew mb-24' : 'darkaddnew mb-24'}`}>
+      + Add New Item
+    </button>
+    <div className='mb-10'>
+      {errorAddress || errorCity || errorPostal || errorCountry || errorName || errorEmail || errorAddress2 || errorCity2 || errorPostal2 || errorCountry2 || errorDescription ? (
+        <p className='text-red text-[10px] font-semibold tracking-[-0.21px]'>- All fields must be added</p>
+      ) : null}
+
+      {errorItems ? (
+        <p className='text-red text-[10px] font-semibold tracking-[-0.21px]'>- An item must be added</p>
+      ) : null}
+    </div>
+  </section>
+  <div className={`${theme === "light" ? 'light4' : 'dark4'} flex h-24 w-full items-center justify-end px-6 gap-2 md:bg-transparent md:justify-between md:px-14 xl:px-60`}>
+    <Link to={-1} className={`${theme === "light" ? "discard" : "darkdiscard"}`}>Discard</Link>
+    <div className='flex gap-2'>
+      <button onClick={(e) => { handleValidation("draft") }} className={`${theme === "light" ? "savedraft" : "darksavedraft"}`}>Save as Draft</button>
+      <button onClick={(e) => { handleValidation("add") }} className='save'>Save & Send</button>
+    </div>
+  </div>
+</main>
   );
 }
 
