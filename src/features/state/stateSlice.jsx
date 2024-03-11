@@ -3,6 +3,7 @@ import data from "../../../data.json";
 
 const initialState = {
     toggleMode: "light",
+    filter: "all",
     data
 };
 
@@ -10,6 +11,9 @@ export const stateSlice = createSlice({
     name: 'state',
     initialState,
     reducers: {
+        filter: (state, action) => {
+            state.filter = action.payload;
+        },
         markpaid: (state, action) => {
             const { index } = action.payload;
             state.data[index].status = "paid";
@@ -59,6 +63,6 @@ export const stateSlice = createSlice({
     }
 });
 
-export const { remove, markpaid, edit, add, toggledarklight } = stateSlice.actions;
+export const { filter, remove, markpaid, edit, add, toggledarklight } = stateSlice.actions;
 
 export default stateSlice.reducer;

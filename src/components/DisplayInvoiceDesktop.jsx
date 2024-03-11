@@ -9,11 +9,24 @@ import arrowright from "../assets/arrowright.png";
 function DisplayInvoiceDesktop() {
     const state = useSelector((state) => state.state.data);
     const theme = useSelector((state) => state.state.toggleMode);
+    const filter = useSelector((state) => state.state.filter);
     const navigate = useNavigate();
+
+    // Create a shallow copy of the state array
+    const CopyOfState = [...state];
+
+    // Filter invoices based on selected status
+    const filteredInvoices = CopyOfState.filter((invoice) => {
+        if (filter === "all") {
+            return true; // Return all invoices
+        } else {
+            return invoice.status === filter; // Return invoices with matching status
+        }
+    });
 
     return (
         <main className={`${theme === "light" ? 'light2' : 'dark2'} px-12 pb-28 hidden absolute md:flex md:relative md:flex-col`}>
-            {state.map((invoice) => {
+            {filteredInvoices.map((invoice) => {
                 const handleClick = (id) => {
                     const index = state.findIndex(invoice => invoice.id === id);
                     navigate("/invoice/" + index);
