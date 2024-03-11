@@ -9,7 +9,7 @@ function BackBtn() {
   return (
     <div className='flex items-center gap-6 mb-8'>
         <img className='h-2 w-1' src={arrowside} alt='arrowside' />
-        <button className={theme === "light" ? 'px15 text-08' : 'px15 text-white'} onClick={() => {navigate(-1)}}>Go back</button>
+        <button className={theme === "light" ? 'px15 text-08 hover:text-07' : 'px15 text-white hover:text-06'} onClick={() => {navigate(-1)}}>Go back</button>
     </div>
   )
 }

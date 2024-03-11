@@ -40,7 +40,7 @@ function DisplayInvoiceMobile() {
                 const options = { day: '2-digit', month: 'short', year: 'numeric' };
                 const formattedDate = date.toLocaleDateString('en-GB', options);
                 return (
-                    <div onClick={() => handleClick(invoice.id)} className={theme === "light" ? 'light4 w-full p-6 mb-4 rounded-lg' : 'dark4 w-full p-6 mb-4 rounded-lg'} key={invoice.id}>
+                    <div onClick={() => handleClick(invoice.id)} className={theme === "light" ? 'light4 w-full p-6 mb-4 rounded-lg' : 'dark4 w-full p-6 mb-4 rounded-lg outline outline-none hover:outline-01'} key={invoice.id}>
                         <div className='flex justify-between mb-6'>
                             <h1 className={theme === "light" ? 'px15 text-08' : 'px15 text-white'}><span className='px15 text-07'>#</span>{invoice.id}</h1>
                             <p className={theme === "light" ? 'px13 text-07' : 'px13 text-white'}>{invoice.clientName}</p>

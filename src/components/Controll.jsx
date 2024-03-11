@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import addbtn from "../assets/addbtn.svg";
-import xladdbtn from "../assets/xladdbtn.png";
 import { useSelector, useDispatch } from "react-redux";
-import { Link } from 'react-router-dom';
 import { filter } from '../features/state/stateSlice';
+import AddBtn from './AddBtn';
 
 function Controll() {
     const state = useSelector((state) => state.state.data);
@@ -51,7 +49,7 @@ function Controll() {
                     )}
                 </p>
             </div>
-            <div className='flex gap-4'>
+            <div className='flex gap-4 xl:gap-10'>
                 <div className='flex items-center justify-center'>
                     <select onChange={handleFilterChange} value={stateFilter} className={`font-bold xl:hidden xl:absolute ${theme === "light" ? 'light2' : 'dark2'}`}>
                         <option value="all">All</option>
@@ -66,12 +64,7 @@ function Controll() {
                         <option value="draft">Draft</option>
                     </select>
                 </div>
-                <Link to="/invoice/add" className='flex items-center justify-center xl:hidden xl:absolute'>
-                    <img src={addbtn} alt='addbtn' />
-                </Link>
-                <Link to="/invoice/add" className='items-center justify-center hidden absolute xl:flex xl:relative'>
-                    <img src={xladdbtn} alt='addbtn' />
-                </Link>
+                <AddBtn />
             </div>
         </div>
     );

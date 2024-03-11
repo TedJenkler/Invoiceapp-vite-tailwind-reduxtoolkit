@@ -42,7 +42,7 @@ function DisplayInvoiceDesktop() {
                 const statusClass = invoice.status === "paid" ? "paid" : invoice.status === "pending" ? "pending" : invoice.status === "draft" ? "draft" : "";
 
                 return (
-                    <div onClick={() => handleClick(invoice.id)} className={`${theme === "light" ? 'light4' : 'dark4'} w-full p-6 mb-4 rounded-lg flex justify-between`} key={invoice.id}>
+                    <div onClick={() => handleClick(invoice.id)} className={`${theme === "light" ? 'light4' : 'dark4'} w-full p-6 mb-4 rounded-lg flex justify-between outline outline-none hover:outline-01`} key={invoice.id}>
                         <div className='flex items-center'>
                             <h1 className={`${theme === "light" ? 'px15 text-08' : 'px15 text-white'} mr-6 xl:mr-10`}><span className='px15 text-07'>#</span>{invoice.id}</h1>
                             <div className='flex xl:flex-row-reverse gap-16'>

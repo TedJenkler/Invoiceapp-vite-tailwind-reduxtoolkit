@@ -49,9 +49,54 @@ export const stateSlice = createSlice({
                 total
             };
         },
-        add: (state,action) => {
-            const { clientAddressCity, clientAddressCountry, clientAddressPostCode, clientAddressStreet, clientEmail, clientName, createdAt, description, id, items, paymentDue, paymentTerms, senderAddressCity, senderAddressCountry, senderAddressPostCode, senderAddressStreet, status, total} = action.payload;
-            state.data.push({clientAddressCity: clientAddressCity, clientAddressCountry: clientAddressCountry, clientAddressPostCode: clientAddressPostCode, clientAddressStreet: clientAddressStreet, clientEmail: clientEmail, clientName: clientName, createdAt: createdAt, description: description, id: id, items: items, paymentDue: paymentDue, paymentTerms: paymentTerms, senderAddressCity: senderAddressCity, senderAddressCountry: senderAddressCountry, senderAddressPostCode: senderAddressPostCode, senderAddressStreet: senderAddressStreet, status: status, total: total})
+        add: (state, action) => {
+            const {
+                clientAddressCity,
+                clientAddressCountry,
+                clientAddressPostCode,
+                clientAddressStreet,
+                clientEmail,
+                clientName,
+                createdAt,
+                description,
+                id,
+                items,
+                paymentDue,
+                paymentTerms,
+                senderAddressCity,
+                senderAddressCountry,
+                senderAddressPostCode,
+                senderAddressStreet,
+                status,
+                total
+            } = action.payload;
+
+            const newItem = {
+                id,
+                createdAt,
+                paymentDue,
+                description,
+                paymentTerms,
+                clientName,
+                clientEmail,
+                status,
+                senderAddress: {
+                    street: senderAddressStreet,
+                    city: senderAddressCity,
+                    postCode: senderAddressPostCode,
+                    country: senderAddressCountry
+                },
+                clientAddress: {
+                    street: clientAddressStreet,
+                    city: clientAddressCity,
+                    postCode: clientAddressPostCode,
+                    country: clientAddressCountry
+                },
+                items,
+                total
+            };
+
+            state.data.push(newItem);
         },
         toggledarklight: (state) => {
             if(state.toggleMode === "light"){

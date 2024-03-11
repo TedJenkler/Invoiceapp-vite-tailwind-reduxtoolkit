@@ -16,11 +16,14 @@
     font-size: 0.8125rem;
     line-height: 0.9375rem;
   }
+  .newinvoice {
+    @apply bg-01 text-white flex items-center justify-center gap-2 p-2 rounded-3xl px15 font-bold hover:bg-02;
+  }
   .edit {
-    @apply h-12 bg-ghostwhite text-07 px15 px-6 rounded-3xl flex items-center justify-center;
+    @apply h-12 bg-ghostwhite text-07 px15 px-6 rounded-3xl flex items-center justify-center hover:bg-05 hover:text-07;
   }
   .darkedit {
-    @apply h-12 bg-04 text-05 px15 px-6 rounded-3xl flex items-center justify-center;
+    @apply h-12 bg-04 text-05 px15 px-6 rounded-3xl flex items-center justify-center hover:bg-white hover:text-07;
   }
   .addnew {
     @apply h-12 bg-ghostwhite text-07 px15 px-28 rounded-3xl flex items-center justify-center whitespace-nowrap;
@@ -29,10 +32,10 @@
     @apply h-12 bg-04 text-06 px15 px-28 rounded-3xl flex items-center justify-center whitespace-nowrap;
   }
   .delete {
-    @apply h-12 bg-delete text-white px15 px-6 rounded-3xl flex items-center justify-center;
+    @apply h-12 bg-delete text-white px15 px-6 rounded-3xl flex items-center justify-center hover:bg-10;
   }
   .paid {
-    @apply h-12 bg-01 text-white px15 px-6 rounded-3xl flex items-center justify-center whitespace-nowrap;
+    @apply h-12 bg-01 text-white px15 px-6 rounded-3xl flex items-center justify-center whitespace-nowrap hover:bg-02;
   }
   .save {
     @apply h-12 bg-01 text-white px15 px-4 rounded-3xl flex items-center justify-center whitespace-nowrap;
@@ -44,7 +47,7 @@
     @apply h-12 bg-charcoal text-05 px15 px-4 rounded-3xl flex items-center justify-center whitespace-nowrap;
   }
   .discard {
-    @apply h-12 bg-ghostwhite text-07 px15 px-4 rounded-3xl flex items-center justify-center whitespace-nowrap;
+    @apply h-12 bg-ghostwhite text-07 px15 px-4 rounded-3xl flex items-center justify-center whitespace-nowrap md:bg-04 md:text-06;
   }
   .darkdiscard {
     @apply h-12 bg-04 text-06 px15 px-4 rounded-3xl flex items-center justify-center whitespace-nowrap;

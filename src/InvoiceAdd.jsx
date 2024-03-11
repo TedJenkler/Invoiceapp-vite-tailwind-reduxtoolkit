@@ -4,10 +4,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import trashcan from "./assets/trashcan.png";
 import { Link } from 'react-router-dom';
 import { add } from './features/state/stateSlice';
+import { useNavigate } from 'react-router-dom';
 
 function InvoiceAdd() {
   const dispatch = useDispatch();
   const theme = useSelector((state) => state.state.toggleMode)
+  const navigate = useNavigate()
 
   const [address, setAddress] = useState();
   const [city, setCity] = useState();
@@ -27,12 +29,108 @@ function InvoiceAdd() {
   const [items, setItems] = useState([]);
   const [total, setTotal] = useState()
   const [paymentDueDateString, setPaymentDueDateString] = useState('');
+  const [errorAddress, setErrorAddress] = useState(false)
+  const [errorCity, setErrorCity] = useState(false);
+  const [errorPostal, setErrorPostal] = useState(false);
+  const [errorCountry, setErrorCountry] = useState(false);
+  const [errorName, setErrorName] = useState(false);
+  const [errorEmail, setErrorEmail] = useState(false);
+  const [errorAddress2, setErrorAddress2] = useState(false);
+  const [errorCity2, setErrorCity2] = useState(false);
+  const [errorPostal2, setErrorPostal2] = useState(false);
+  const [errorCountry2, setErrorCountry2] = useState(false);
+  const [errorDescription, setErrorDescription] = useState(false);
+  const [errorItems, setErrorItems] = useState(false);
 
   // Update paymentDueDateString whenever net or date changes
   useEffect(() => {
     const paymentDueDate = new Date(currentDate.getTime() + (net || 0) * 24 * 60 * 60 * 1000);
     setPaymentDueDateString(paymentDueDate.toISOString().split('T')[0]);
   }, [net, date]);
+
+  const handleValidation = (d) => {
+    let count = 0
+    if(address === ""){
+      setErrorAddress(true)
+    }else {
+      setErrorAddress(false)
+      count = count + 1
+    }
+    if (city === "") {
+      setErrorCity(true);
+    } else {
+      setErrorCity(false);
+      count++;
+    }
+    if (postal === "") {
+      setErrorPostal(true);
+    } else {
+      setErrorPostal(false);
+      count++;
+    }
+    if (country === "") {
+      setErrorCountry(true);
+    } else {
+      setErrorCountry(false);
+      count++;
+    }
+    if (name === "") {
+      setErrorName(true);
+    } else {
+      setErrorName(false);
+      count++;
+    }
+    if (email === "") {
+      setErrorEmail(true);
+    } else {
+      setErrorEmail(false);
+      count++;
+    }
+    if (address2 === "") {
+      setErrorAddress2(true);
+    } else {
+      setErrorAddress2(false);
+      count++;
+    }
+    if (city2 === "") {
+      setErrorCity2(true);
+    } else {
+      setErrorCity2(false);
+      count++;
+    }
+    if (postal2 === "") {
+      setErrorPostal2(true);
+    } else {
+      setErrorPostal2(false);
+      count++;
+    }
+    if (country2 === "") {
+      setErrorCountry2(true);
+    } else {
+      setErrorCountry2(false);
+      count++;
+    }
+    if (description === "") {
+      setErrorDescription(true);
+    } else {
+      setErrorDescription(false);
+      count++;
+    }
+    if (items.length === 0) {
+      setErrorItems(true);
+    } else {
+      setErrorItems(false);
+      count++;
+    }
+    if(count === 12 && d === "add") {
+      dispatch(add({clientAddressCity: city2, clientAddressCountry: country2, clientAddressPostCode: postal2, clientAddressStreet: address2, clientEmail: email, clientName: name, createdAt: date, description: description, id: generateRandomId(), items: items, paymentDue: paymentDueDateString, paymentTerms: net, senderAddressCity: city, senderAddressCountry: country, senderAddressPostCode: postal, senderAddressStreet: address, status: "pending", total: total}))
+      navigate("/")
+    }
+    if (count > 0 && d === "draft") {
+      dispatch(add({clientAddressCity: city2, clientAddressCountry: country2, clientAddressPostCode: postal2, clientAddressStreet: address2, clientEmail: email, clientName: name, createdAt: date, description: description, id: generateRandomId(), items: items, paymentDue: paymentDueDateString, paymentTerms: net, senderAddressCity: city, senderAddressCountry: country, senderAddressPostCode: postal, senderAddressStreet: address, status: "draft", total: total}))
+      navigate("/")
+    }
+  }
 
   const handleInputChange = (index, fieldName, value) => {
     const updatedItems = [...items];
@@ -106,7 +204,7 @@ function InvoiceAdd() {
         <label className={`${theme === "light" ? 'px13 text-07' : 'px13 text-06'} mb-2`}>Client’s Name</label>
         <input onChange={(e) => setName(e.target.value)} value={name} className={`${theme === "light" ? 'light4' : 'dark4'} border border-${theme === "light" ? "05" : "03"} h-12 rounded mb-6 px-5`}></input>
         <label className={`${theme === "light" ? 'px13 text-07' : 'px13 text-06'} mb-2`}>Client’s Email</label>
-        <input onChange={(e) => setEmail(e.target.value)} value={email} className={`${theme === "light" ? 'light4' : 'dark4'} border border-${theme === "light" ? "05" : "03"} h-12 rounded mb-6 px-5`}></input>
+        <input placeholder='e.g. email@example.com' onChange={(e) => setEmail(e.target.value)} value={email} className={`${theme === "light" ? 'light4' : 'dark4'} border border-${theme === "light" ? "05" : "03"} h-12 rounded mb-6 px-5`}></input>
         <label className={`${theme === "light" ? 'px13 text-07' : 'px13 text-06'} mb-2`}>Street Address</label>
         <input onChange={(e) => setAddress2(e.target.value)} value={address2} className={`${theme === "light" ? 'light4' : 'dark4'} border border-${theme === "light" ? "05" : "03"} h-12 rounded mb-6 px-5`}></input>
         <div className='flex gap-4 justify-between mb-6'>
@@ -132,7 +230,7 @@ function InvoiceAdd() {
           <option value="1">Net 1 Day</option>
         </select>
         <label className={`${theme === "light" ? 'px13 text-07' : 'px13 text-06'} mb-2`}>Project Description</label>
-        <input onChange={(e) => {setDescription(e.target.value)}} value={description} className={`${theme === "light" ? 'light4' : 'dark4'} border border-${theme === "light" ? "05" : "03"} h-12 rounded mb-20 px-5`}></input>
+        <input placeholder='e.g. Graphic Design Service' onChange={(e) => {setDescription(e.target.value)}} value={description} className={`${theme === "light" ? 'light4' : 'dark4'} border border-${theme === "light" ? "05" : "03"} h-12 rounded mb-20 px-5`}></input>
 
         <h2 className='text-lg font-bold tracking-[-0.38px] text-lightgrey mb-6'>Item List</h2>
         {items.map((item, index) => (
@@ -245,8 +343,8 @@ function InvoiceAdd() {
       <div className={`${theme === "light" ? 'light4' : 'dark4'} flex h-24 w-full items-center justify-end px-6 gap-2 md:bg-transparent md:justify-between md:px-14 xl:px-60`}>
         <Link to={-1} className={`${theme === "light" ? "discard" : "darkdiscard"}`}>Discard</Link>
         <div className='flex gap-2'>
-          <Link to="/" onClick={(e) => {dispatch(add({clientAddressCity: city2, clientAddressCountry: country2, clientAddressPostCode: postal2, clientAddressStreet: address2, clientEmail: email, clientName: name, createdAt: date, description: description, id: generateRandomId(), items: items, paymentDue: paymentDueDateString, paymentTerms: net, senderAddressCity: city, senderAddressCountry: country, senderAddressPostCode: postal, senderAddressStreet: address, status: "draft", total: total}))}} className={`${theme === "light" ? "savedraft" : "darksavedraft"}`}>Save as Draft</Link>
-          <Link to="/" onClick={(e) => {dispatch(add({clientAddressCity: city2, clientAddressCountry: country2, clientAddressPostCode: postal2, clientAddressStreet: address2, clientEmail: email, clientName: name, createdAt: date, description: description, id: generateRandomId(), items: items, paymentDue: paymentDueDateString, paymentTerms: net, senderAddressCity: city, senderAddressCountry: country, senderAddressPostCode: postal, senderAddressStreet: address, status: "pending", total: total}))}} className='save'>Save & Send</Link>
+          <button onClick={(e) => {handleValidation("draft")}} className={`${theme === "light" ? "savedraft" : "darksavedraft"}`}>Save as Draft</button>
+          <button onClick={(e) => {handleValidation("add")}} className='save'>Save & Send</button>
         </div>
       </div>
     </main>
