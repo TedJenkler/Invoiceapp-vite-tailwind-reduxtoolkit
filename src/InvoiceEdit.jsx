@@ -171,7 +171,7 @@ function InvoiceEdit() {
         <BackBtn />
       </div>
       <section className='px-6 flex flex-col md:px-14 xl:px-60'>
-        <h1 className={`${theme === "light" ? 'px24 text-08' : 'px24 text-white'} mb-6`}>Edit <span className='px24 text-06'>#</span>{state.id}</h1>
+        <h1 className={`${theme === "light" ? 'px24 text-08' : 'px24 text-white'} mb-6 md:mb-12`}>Edit <span className='px24 text-06'>#</span>{state.id}</h1>
         <p className='px15 text-01 mb-6'>Bill From</p>
         <label className={`${theme === "light" ? 'px13 text-07' : 'px13 text-06'} mb-2 relative`}>
           <span className={errorAddress ? "text-red" : "text-07"}>Street Address</span>

@@ -69,10 +69,10 @@ function InvoiceView() {
                             <p className={`px15 text-08 mb-8 ${theme === "light" ? 'text-08' : 'text-white'} md:hidden md:absolute`}>{selectedstate.clientEmail}</p>
                         </div>
                         <div className='md:mr-28'>
-                            <p className='px13 text-07 mb-3'>Bill To</p>
+                            <p className={theme === "light" ? "px13 text-07 mb-3" : "px13 text-05 mb-3"}>Bill To</p>
                             <p className='px15 mb-2'>{selectedstate.clientName}</p>
                             {selectedstate.clientAddress && Object.values(selectedstate.clientAddress).map((value, index) => (
-                                <p key={index} className={`px15 ${theme === "light" ? 'text-07 px13' : 'text-white'} mb-2`}>{value}</p>
+                                <p key={index} className={`px13 ${theme === "light" ? 'text-07 px13' : 'text-white'} mb-2`}>{value}</p>
                             ))}
                         </div>
                         <div className='hidden absolute md:flex md:relative md:flex-col'>
@@ -82,11 +82,11 @@ function InvoiceView() {
                     </div>
                     <div className={`${theme === "light" ? 'bg-ghostwhite' : 'bg-04'} rounded-t-lg p-6 flex flex-col pb-0 md:px-0`}>
                         <div className='md:flex md:justify-between md:px-8'>
-                            <p className='hidden absolute md:flex md:relative md:mb-8'>Item Name</p>
+                            <p className='hidden absolute px13 text-07 md:flex md:relative md:mb-8'>Item Name</p>
                             <div className='hidden absolute md:flex md:relative md:gap-10'>
-                                <p className='mr-3'>QTY.</p>
-                                <p className='mr-6'>Price</p>
-                                <p>Total</p>
+                                <p className={`mr-3 px13 ${theme === "light" ? 'text-07' : 'text-06'}`}>QTY.</p>
+                                <p className={`mr-6 px13 ${theme === "light" ? 'text-07' : 'text-06'}`}>Price</p>
+                                <p className={`px13 ${theme === "light" ? 'text-07' : 'text-06'}`}>Total</p>
                             </div>
                         </div>
                         {selectedstate.items.map((item, index) => (
@@ -99,21 +99,21 @@ function InvoiceView() {
                                     <p className={`px15 text-08 mb-6 ${theme === "light" ? 'text-08' : 'text-white'}`}>£ {item.total}</p>
                                 </div>
                                 <div className='hidden absolute md:relative md:flex justify-between w-full md:px-8'>
-                                    <div>
-                                        <p className={`mb-8 ${theme === "light" ? 'text-08' : 'text-white'}`}>{item.name}</p>
-                                    </div>
-                                    <div className='flex gap-12'>
-                                        <div>
-                                            <p>{item.quantity}</p>
-                                        </div>
-                                        <div>
-                                            <p>{item.price}</p>
-                                        </div>
-                                        <div>
-                                            {item.total}
-                                        </div>
-                                    </div>
+                                <div>
+                                    <p className={`mb-8 ${theme === "light" ? 'text-08 px15' : 'text-white px15'}`}>{item.name}</p>
                                 </div>
+                                <div className='flex gap-8'>
+                                    <div>
+                                        <p className={`${theme === "light" ? 'text-07' : 'text-06'} px15`}>{item.quantity}</p>
+                                    </div>
+                                <div>
+                                    <p className={`${theme === "light" ? 'text-07' : 'text-06'} px15`}>£ {item.price}</p>
+                                </div>
+                                <div className={`${theme === "light" ? 'text-08' : 'text-white'} px15`}>
+                                    <p>£ {item.total}</p>
+                                </div>
+                                </div>
+                            </div>
                             </div>
                         ))}
                     </div>

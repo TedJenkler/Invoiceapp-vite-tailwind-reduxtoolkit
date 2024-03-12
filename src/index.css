@@ -2,7 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  body {
+    font-family: "League Spartan", sans-serif;  
+  }
+}
+
 @layer utilities {
+  .px36 {
+    @apply text-4xl tracking-[-0.75px] font-bold;
+  }
   .px24 {
     @apply text-2xl tracking-[-0.75px] font-bold;
   }

@@ -10,7 +10,7 @@ function Controll() {
     const [stateFilter, setStateFilter] = useState("all");
     const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 768);
 
-    const containerClasses = `px-6 py-8 flex justify-between md:px-12 ${theme === "light" ? 'light2' : 'dark2'}`;
+    const containerClasses = `px-6 py-8 flex justify-between md:px-12 md:pb-14 ${theme === "light" ? 'light2' : 'dark2'}`;
     const invoiceCountClasses = `${theme === "light" ? 'light3' : 'dark3'} px13 md:${state.length > 0 ? 'md:hidden md:absolute' : 'md:flex md:relative'}`;
 
     const handleFilterChange = (e) => {

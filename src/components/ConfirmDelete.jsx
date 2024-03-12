@@ -15,7 +15,7 @@ function ConfirmDelete({ ConfirmDelete, setConfirmDelete }) {
             <h1 className={`mb-6 px24 text-${theme === "light" ? "08" : "white"} md:mb-3`}>Confirm Deletion</h1>
             <p className="px13 text-06 mb-2 md:hidden md:absolute">Are you sure you want to delete invoice</p>
             <p className="px13 text-06 mb-6 md:hidden md:absolute">#{idvalue}? This action cannot be undone.</p>
-            <p className='px13 text-06 mb-4'>Are you sure you want to delete invoice #{idvalue}? This action cannot be undone.</p>
+            <p className='hidden absolute px13 text-06 mb-4 md:flex md:relative'>Are you sure you want to delete invoice #{idvalue}? This action cannot be undone.</p>
             <div className="flex justify-end gap-2">
                 <button onClick={() => { setConfirmDelete(false) }} className={`edit ${theme === "light" ? "" : "dark"}`}>Cancel</button>
                 <Link to="/" onClick={() => { dispatch(remove({ index: id })) }} className="delete">Delete</Link>
