@@ -19,15 +19,15 @@ const router = createBrowserRouter([
     element: <App />
   },
   {
-    path: "/Invoiceapp-vite-tailwind-reduxtoolkit/invoice/:id",
+    path: "/invoice/:id",
     element: <InvoiceView />
   },
   {
-    path: "/Invoiceapp-vite-tailwind-reduxtoolkit/invoice/:id/edit",
+    path: "/invoice/:id/edit",
     element: <InvoiceEdit />
   },
   {
-    path: "/Invoiceapp-vite-tailwind-reduxtoolkit/invoice/add",
+    path: "/invoice/add",
     element: <InvoiceAdd />
   }
 ])
