@@ -29,7 +29,7 @@ function DisplayInvoiceDesktop() {
             {filteredInvoices.map((invoice) => {
                 const handleClick = (id) => {
                     const index = state.findIndex(invoice => invoice.id === id);
-                    navigate("/Invoiceapp-vite-tailwind-reduxtoolkit/invoice/" + index);
+                    navigate("/invoice/" + index);
                 }
 
                 const dateString = invoice.createdAt;
