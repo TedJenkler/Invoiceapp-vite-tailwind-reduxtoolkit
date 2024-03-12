@@ -38,19 +38,19 @@
     @apply h-12 bg-01 text-white px15 px-6 rounded-3xl flex items-center justify-center whitespace-nowrap hover:bg-02;
   }
   .save {
-    @apply h-12 bg-01 text-white px15 px-4 rounded-3xl flex items-center justify-center whitespace-nowrap;
+    @apply h-12 bg-01 text-white px15 px-4 rounded-3xl flex items-center justify-center whitespace-nowrap hover:bg-02;
   }
   .savedraft {
-    @apply h-12 bg-charcoal text-07 px15 px-4 rounded-3xl flex items-center justify-center whitespace-nowrap;
+    @apply h-12 bg-charcoal text-07 px15 px-4 rounded-3xl flex items-center justify-center whitespace-nowrap hover:bg-08 hover:text-06;
   }
   .darksavedraft {
-    @apply h-12 bg-charcoal text-05 px15 px-4 rounded-3xl flex items-center justify-center whitespace-nowrap;
+    @apply h-12 bg-charcoal text-05 px15 px-4 rounded-3xl flex items-center justify-center whitespace-nowrap hover:bg-03 hover:text-05;
   }
   .discard {
     @apply h-12 bg-ghostwhite text-07 px15 px-4 rounded-3xl flex items-center justify-center whitespace-nowrap md:bg-04 md:text-06;
   }
   .darkdiscard {
-    @apply h-12 bg-04 text-06 px15 px-4 rounded-3xl flex items-center justify-center whitespace-nowrap;
+    @apply h-12 bg-04 text-06 px15 px-4 rounded-3xl flex items-center justify-center whitespace-nowrap md:bg-ghostwhite md:text-07;
   }
   .dark1 {
     @apply bg-03;
