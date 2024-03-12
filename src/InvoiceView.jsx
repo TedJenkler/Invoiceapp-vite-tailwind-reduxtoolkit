@@ -53,7 +53,7 @@ function InvoiceView() {
                             <h2 className={`px15 text-08 mb-1 ${theme === "light" ? 'text-07' : 'text-white'}`}><span className='text-07 px15'>#</span>{selectedstate.id}</h2>
                             <p className={`px13 ${theme === "light" ? 'text-07' : 'text-05'} mb-8`}>{selectedstate.description}</p>
                         </div>
-                        <div className='md:text-end'>
+                        <div className='mb-8 md:text-end'>
                             {selectedstate.senderAddress && Object.values(selectedstate.senderAddress).map((value, index) => (
                                 <p key={index} className={`px13 ${theme === "light" ? 'text-07' : 'text-05'} mb-1`}>{value}</p>
                             ))}
@@ -70,8 +70,9 @@ function InvoiceView() {
                         </div>
                         <div className='md:mr-28'>
                             <p className='px13 text-07 mb-3'>Bill To</p>
+                            <p className='px15 mb-2'>{selectedstate.clientName}</p>
                             {selectedstate.clientAddress && Object.values(selectedstate.clientAddress).map((value, index) => (
-                                <p key={index} className={`px15 ${theme === "light" ? 'text-08' : 'text-white'} mb-2`}>{value}</p>
+                                <p key={index} className={`px15 ${theme === "light" ? 'text-07 px13' : 'text-white'} mb-2`}>{value}</p>
                             ))}
                         </div>
                         <div className='hidden absolute md:flex md:relative md:flex-col'>

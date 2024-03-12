@@ -14,7 +14,9 @@ function App() {
       <Controll />
       {state.length > 0 && <DisplayInvoiceMobile />}
       {state.length > 0 && <DisplayInvoiceDesktop />}
-      {state.length < 1 && <NoInvoice />}
+      <div className="overflow-hidden">
+        {state.length < 1 && <NoInvoice />}
+      </div>
     </main>
   );
 }

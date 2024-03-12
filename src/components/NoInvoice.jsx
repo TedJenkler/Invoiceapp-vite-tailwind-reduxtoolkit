@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 
 function NoInvoice() {
   const theme = useSelector((state) => state.state.toggleMode);
-  const mainClass = `h-full ${theme === "light" ? 'light02' : 'dark02'} flex flex-col items-center pt-24`;
+  const mainClass = `h-full ${theme === "light" ? 'light02' : 'dark02'} flex flex-col items-center pt-24 overflow-none`;
   const headingClass = `mb-6 px24 ${theme === "light" ? 'text-08' : 'text-white'}`;
   const paragraphClass = `px13 ${theme === "light" ? 'text-06' : 'text-05'}`;
 

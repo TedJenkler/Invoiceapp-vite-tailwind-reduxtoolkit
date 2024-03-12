@@ -192,7 +192,7 @@ function InvoiceAdd() {
         <input
           onChange={(e) => setAddress(e.target.value)}
           value={address}
-          className={`${theme === "light" ? 'light4' : 'dark4'} ${errorAddress ? "outline outline-red" : "outline-none"} border border-${theme === "light" ? "05" : "03"} h-12 rounded mb-6 px-5`}
+          className={`${theme === "light" ? 'light4' : 'dark4'} ${errorAddress ? "outline outline-red" : "outline-none"} border border-${theme === "light" ? "05" : "03"} h-12 rounded mb-6 px-5 px15`}
         ></input>
         <div className='flex gap-4 justify-between mb-6'>
           <div className='flex flex-col w-1/2'>
@@ -203,7 +203,7 @@ function InvoiceAdd() {
             <input
               onChange={(e) => setCity(e.target.value)}
               value={city}
-              className={`${theme === "light" ? 'light4' : 'dark4'} ${errorCity ? "outline outline-red" : "outline-none"} border border-${theme === "light" ? "05" : "03"} w-full h-12 rounded px-5`}
+              className={`${theme === "light" ? 'light4' : 'dark4'} ${errorCity ? "outline outline-red" : "outline-none"} border border-${theme === "light" ? "05" : "03"} w-full h-12 rounded px-5 px15`}
             />
           </div>
           <div className='flex flex-col w-1/2'>
@@ -214,7 +214,7 @@ function InvoiceAdd() {
             <input
               onChange={(e) => setPostal(e.target.value)}
               value={postal}
-              className={`${theme === "light" ? 'light4' : 'dark4'} ${errorPostal ? "outline outline-red" : "outline-none"} border border-${theme === "light" ? "05" : "03"} w-full h-12 rounded px-5`}
+              className={`${theme === "light" ? 'light4' : 'dark4'} ${errorPostal ? "outline outline-red" : "outline-none"} border border-${theme === "light" ? "05" : "03"} w-full h-12 rounded px-5 px15`}
             />
           </div>
         </div>
@@ -225,7 +225,7 @@ function InvoiceAdd() {
         <input
           onChange={(e) => setCountry(e.target.value)}
           value={country}
-          className={`${theme === "light" ? 'light4' : 'dark4'} ${errorCountry ? "outline outline-red" : "outline-none"} border border-${theme === "light" ? "05" : "03"} h-12 rounded mb-6 px-5`}
+          className={`${theme === "light" ? 'light4' : 'dark4'} ${errorCountry ? "outline outline-red" : "outline-none"} border border-${theme === "light" ? "05" : "03"} h-12 rounded mb-6 px-5 px15`}
         />
         <p className='px15 text-01 mb-6'>Bill To</p>
         <label className={`${theme === "light" ? 'px13 text-07' : 'px13 text-06'} mb-2 relative`}>
@@ -235,7 +235,7 @@ function InvoiceAdd() {
         <input
           onChange={(e) => setName(e.target.value)}
           value={name}
-          className={`${theme === "light" ? 'light4' : 'dark4'} ${errorName ? "outline outline-red" : "outline-none"} border border-${theme === "light" ? "05" : "03"} h-12 rounded mb-6 px-5`}
+          className={`${theme === "light" ? 'light4' : 'dark4'} ${errorName ? "outline outline-red" : "outline-none"} border border-${theme === "light" ? "05" : "03"} h-12 rounded mb-6 px-5 px15`}
         />
 
         <label className={`${theme === "light" ? 'px13 text-07' : 'px13 text-06'} mb-2 relative`}>
@@ -246,7 +246,7 @@ function InvoiceAdd() {
           placeholder='e.g. email@example.com'
           onChange={(e) => setEmail(e.target.value)}
           value={email}
-          className={`${theme === "light" ? 'light4' : 'dark4'} ${errorEmail ? "outline outline-red" : "outline-none"} border border-${theme === "light" ? "05" : "03"} h-12 rounded mb-6 px-5`}
+          className={`${theme === "light" ? 'light4' : 'dark4'} ${errorEmail ? "outline outline-red" : "outline-none"} border border-${theme === "light" ? "05" : "03"} h-12 rounded mb-6 px-5 px15`}
         />
 
         <label className={`${theme === "light" ? 'px13 text-07' : 'px13 text-06'} mb-2 relative`}>
@@ -256,7 +256,7 @@ function InvoiceAdd() {
         <input
           onChange={(e) => setAddress2(e.target.value)}
           value={address2}
-          className={`${theme === "light" ? 'light4' : 'dark4'} ${errorAddress2 ? "outline outline-red" : "outline-none"} border border-${theme === "light" ? "05" : "03"} h-12 rounded mb-6 px-5`}
+          className={`${theme === "light" ? 'light4' : 'dark4'} ${errorAddress2 ? "outline outline-red" : "outline-none"} border border-${theme === "light" ? "05" : "03"} h-12 rounded mb-6 px-5 px15`}
         />
         <div className='flex gap-4 justify-between mb-6'>
           <div className='flex flex-col w-1/2'>
@@ -267,7 +267,7 @@ function InvoiceAdd() {
             <input
               onChange={(e) => setCity2(e.target.value)}
               value={city2}
-              className={`${theme === "light" ? 'light4' : 'dark4'} ${errorCity2 ? "outline outline-red" : "outline-none"} border border-${theme === "light" ? "05" : "03"} w-full h-12 rounded px-5`}
+              className={`${theme === "light" ? 'light4' : 'dark4'} ${errorCity2 ? "outline outline-red" : "outline-none"} border border-${theme === "light" ? "05" : "03"} w-full h-12 rounded px-5 px15`}
             />
           </div>
           <div className='flex flex-col w-1/2'>
@@ -278,7 +278,7 @@ function InvoiceAdd() {
             <input
               onChange={(e) => setPostal2(e.target.value)}
               value={postal2}
-              className={`${theme === "light" ? 'light4' : 'dark4'} ${errorPostal2 ? "outline outline-red" : "outline-none"} border border-${theme === "light" ? "05" : "03"} w-full h-12 rounded px-5`}
+              className={`${theme === "light" ? 'light4' : 'dark4'} ${errorPostal2 ? "outline outline-red" : "outline-none"} border border-${theme === "light" ? "05" : "03"} w-full h-12 rounded px-5 px15`}
             />
           </div>
         </div>
@@ -289,12 +289,12 @@ function InvoiceAdd() {
         <input
           onChange={(e) => setCountry2(e.target.value)}
           value={country2}
-          className={`${theme === "light" ? 'light4' : 'dark4'} ${errorCountry2 ? "outline outline-red" : "outline-none"} border border-${theme === "light" ? "05" : "03"} h-12 rounded mb-6 px-5`}
+          className={`${theme === "light" ? 'light4' : 'dark4'} ${errorCountry2 ? "outline outline-red" : "outline-none"} border border-${theme === "light" ? "05" : "03"} h-12 rounded mb-6 px-5 px15`}
         />
         <label className={`${theme === "light" ? 'px13 text-07' : 'px13 text-06'} mb-2`}>Invoice Date</label>
         <input onChange={(e) => setDate(e.target.value)} value={date} className={`${theme === "light" ? 'light4' : 'dark4'} border border-${theme === "light" ? "05" : "03"} h-12 rounded mb-6 px-5`} type='date'></input>
         <label className={`${theme === "light" ? 'px13 text-07' : 'px13 text-06'} mb-2`}>Payment Terms</label>
-        <select onChange={(e) => setNet(parseInt(e.target.value))} value={net} className={`${theme === "light" ? 'light4' : 'dark4'} border border-${theme === "light" ? "05" : "03"} h-12 rounded mb-6 px-5`}>
+        <select onChange={(e) => setNet(parseInt(e.target.value))} value={net} className={`${theme === "light" ? 'light4' : 'dark4'} border border-${theme === "light" ? "05" : "03"} h-12 rounded mb-6 px-5 px15`}>
           <option value="30">Net 30 Days</option>
           <option value="14">Net 14 Days</option>
           <option value="7">Net 7 Days</option>
@@ -308,7 +308,7 @@ function InvoiceAdd() {
           placeholder='e.g. Graphic Design Service'
           onChange={(e) => { setDescription(e.target.value) }}
           value={description}
-          className={`${theme === "light" ? 'light4' : 'dark4'} ${errorDescription ? "outline outline-red" : "outline-none"} border border-${theme === "light" ? "05" : "03"} h-12 rounded mb-20 px-5`}
+          className={`${theme === "light" ? 'light4' : 'dark4'} ${errorDescription ? "outline outline-red" : "outline-none"} border border-${theme === "light" ? "05" : "03"} h-12 rounded mb-20 px-5 px15`}
         />
         <h2 className='text-lg font-bold tracking-[-0.38px] text-lightgrey mb-6'>Item List</h2>
         {items.map((item, index) => (
@@ -317,7 +317,7 @@ function InvoiceAdd() {
             <input
               value={item.name}
               onChange={(e) => handleInputChange(index, 'name', e.target.value)}
-              className={`${theme === "light" ? 'light4' : 'dark4'} border border-${theme === "light" ? "05" : "03"} h-12 rounded mb-6 px-6`}
+              className={`${theme === "light" ? 'light4' : 'dark4'} border border-${theme === "light" ? "05" : "03"} h-12 rounded mb-6 px-6 px15`}
             ></input>
             <div className='flex justify-between items-center'>
               <div className='flex items-center'>
@@ -326,7 +326,7 @@ function InvoiceAdd() {
                   <input
                     value={item.quantity}
                     onChange={(e) => handleInputChange(index, 'quantity', e.target.value)}
-                    className={`${theme === "light" ? 'light4' : 'dark4'} border border-${theme === "light" ? "05" : "03"} h-12 rounded p-6`}
+                    className={`${theme === "light" ? 'light4' : 'dark4'} border border-${theme === "light" ? "05" : "03"} h-12 rounded p-6 px15`}
                   ></input>
                 </div>
                 <div className='flex flex-col w-24 mr-4'>
@@ -334,12 +334,12 @@ function InvoiceAdd() {
                   <input
                     value={item.price}
                     onChange={(e) => handleInputChange(index, 'price', e.target.value)}
-                    className={`${theme === "light" ? 'light4' : 'dark4'} border border-${theme === "light" ? "05" : "03"} h-12 rounded px-6`}
+                    className={`${theme === "light" ? 'light4' : 'dark4'} border border-${theme === "light" ? "05" : "03"} h-12 rounded px-6 px15`}
                   ></input>
                 </div>
                 <div className='flex flex-col gap-6'>
                   <p className={`${theme === "light" ? 'px13 text-07' : 'px13 text-06'}`}>Total</p>
-                  <p className={`${theme === "light" ? 'px13 text-07 mb-5' : 'px13 text-06 mb-5'}`}>{total}</p>
+                  <p className={`${theme === "light" ? 'px15 text-07 mb-5' : 'px15 text-06 mb-5'}`}>{isNaN(item.quantity) || isNaN(item.price) ? 0 : (item.quantity * item.price).toFixed(2)}</p>
                 </div>
               </div>
               <img
@@ -394,7 +394,7 @@ function InvoiceAdd() {
                 {items.map((item, index) => (
                   <p
                     key={`total-${index}`}
-                    className={`h-12 rounded mb-4 px-6 flex items-center justify-center`}
+                    className={`h-12 rounded mb-4 px-6 flex items-center justify-center px15`}
                   >
                     {isNaN(item.quantity) || isNaN(item.price) ? 0 : (item.quantity * item.price).toFixed(2)}
                   </p>
