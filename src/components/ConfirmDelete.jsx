@@ -18,7 +18,7 @@ function ConfirmDelete({ ConfirmDelete, setConfirmDelete }) {
             <p className='hidden absolute px13 text-06 mb-4 md:flex md:relative'>Are you sure you want to delete invoice #{idvalue}? This action cannot be undone.</p>
             <div className="flex justify-end gap-2">
                 <button onClick={() => { setConfirmDelete(false) }} className={`edit ${theme === "light" ? "" : "dark"}`}>Cancel</button>
-                <Link to="/" onClick={() => { dispatch(remove({ index: id })) }} className="delete">Delete</Link>
+                <Link to="/Invoiceapp-vite-tailwind-reduxtoolkit/" onClick={() => { dispatch(remove({ index: id })) }} className="delete">Delete</Link>
             </div>
         </div>
     );

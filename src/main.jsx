@@ -15,19 +15,19 @@ import InvoiceAdd from './InvoiceAdd.jsx'
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/Invoiceapp-vite-tailwind-reduxtoolkit/",
     element: <App />
   },
   {
-    path: "/invoice/:id",
+    path: "/Invoiceapp-vite-tailwind-reduxtoolkit/invoice/:id",
     element: <InvoiceView />
   },
   {
-    path: "/invoice/:id/edit",
+    path: "/Invoiceapp-vite-tailwind-reduxtoolkit/invoice/:id/edit",
     element: <InvoiceEdit />
   },
   {
-    path: "/invoice/add",
+    path: "/Invoiceapp-vite-tailwind-reduxtoolkit/invoice/add",
     element: <InvoiceAdd />
   }
 ])
@@ -39,7 +39,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <div className='xl:h-screen xl:overflow-hidden xl:w-28'>
           <Nav />
         </div>
-        <div className='xl:w-full xl:overflow-scroll'>
+        <div className='xl:w-full'>
           <RouterProvider router={router} />
         </div>
       </div>

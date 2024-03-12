@@ -118,7 +118,7 @@ function InvoiceEdit() {
     }
     if (count === 12 && d === "edit") {
       dispatch(edit({ index: id, clientAddressCity: city2, clientAddressCountry: country2, clientAddressPostCode: postal2, clientAddressStreet: address2, clientEmail: email, clientName: name, createdAt: date, description: description, id: state.id, items: items, paymentDue: paymentDueDateString, paymentTerms: net, senderAddressCity: city, senderAddressCountry: country, senderAddressPostCode: postal, senderAddressStreet: address, status: "pending", total: total }));
-      navigate("/");
+      navigate("/Invoiceapp-vite-tailwind-reduxtoolkit/");
     }
   };
 

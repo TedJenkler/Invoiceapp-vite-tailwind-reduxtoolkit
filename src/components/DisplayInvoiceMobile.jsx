@@ -30,7 +30,7 @@ function DisplayInvoiceMobile() {
             {filteredInvoices.map((invoice) => {
                 const handleClick = (id) => {
                     const index = state.findIndex((invoice) => invoice.id === id);
-                    navigate("/invoice/" + index);
+                    navigate("/Invoiceapp-vite-tailwind-reduxtoolkit/invoice/" + index);
                 }
 
                 const dateString = invoice.createdAt;

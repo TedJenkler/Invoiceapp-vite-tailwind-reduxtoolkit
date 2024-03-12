@@ -11,7 +11,6 @@ function Controll() {
     const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 768);
 
     const containerClasses = `px-6 py-8 flex justify-between md:px-12 md:pb-14 ${theme === "light" ? 'light2' : 'dark2'}`;
-    const invoiceCountClasses = `${theme === "light" ? 'light3' : 'dark3'} px13 md:${state.length > 0 ? 'md:hidden md:absolute' : 'md:flex md:relative'}`;
 
     const handleFilterChange = (e) => {
         setStateFilter(e.target.value);
@@ -37,7 +36,7 @@ function Controll() {
         <div className={containerClasses}>
             <div>
                 <h1 className={`px24 mb-1 md:px36 ${theme === "light" ? 'light2' : 'dark2'}`}>Invoices</h1>
-                <p className={invoiceCountClasses}>
+                <p className={`px13 ${theme === "light" ? 'light3' : 'dark3'}`}>
                     {state.length === 0 ? (
                         "No Invoice"
                     ) : (
@@ -51,13 +50,13 @@ function Controll() {
             </div>
             <div className='flex gap-4 xl:gap-10'>
                 <div className='flex items-center justify-center'>
-                    <select onChange={handleFilterChange} value={stateFilter} className={`font-bold xl:hidden xl:absolute ${theme === "light" ? 'light2' : 'dark2'}`}>
+                    <select onChange={handleFilterChange} value={stateFilter} className={`font-bold xl:hidden ${theme === "light" ? 'light2' : 'dark2'}`}>
                         <option value="all">All</option>
                         <option value="paid">Paid</option>
                         <option value="pending">Pending</option>
                         <option value="draft">Draft</option>
                     </select>
-                    <select onChange={handleFilterChange} value={stateFilter} className={`font-bold hidden absolute xl:flex xl:relative ${theme === "light" ? 'light2' : 'dark2'}`}>
+                    <select onChange={handleFilterChange} value={stateFilter} className={`font-bold hidden xl:flex ${theme === "light" ? 'light2' : 'dark2'}`}>
                         <option value="all">All</option>
                         <option value="paid">Paid</option>
                         <option value="pending">Pending</option>

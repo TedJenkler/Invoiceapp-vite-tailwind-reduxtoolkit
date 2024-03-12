@@ -44,7 +44,7 @@ function InvoiceView() {
                     <div className='hidden absolute md:flex md:relative gap-2'>
                         <Link to={`/invoice/${id}/edit`} className={`${theme === "light" ? "edit" : "darkedit"}`}>Edit</Link>
                         <button onClick={() => setConfirmDelete(true)} className='delete'>Delete</button>
-                        <Link to="/" onClick={() => {dispatch(markpaid({index: id}))}} className='paid'>Mark as Paid</Link>
+                        <Link to="/Invoiceapp-vite-tailwind-reduxtoolkit/" onClick={() => {dispatch(markpaid({index: id}))}} className='paid'>Mark as Paid</Link>
                     </div>
                 </div>
                 <div className={`${theme === "light" ? "light4" : "dark4"} p-6 rounded-md mb-14 mx-6 md:mx-10 md:px-8 xl:p-12`}>
@@ -125,7 +125,7 @@ function InvoiceView() {
                 <div className={`${theme === "light" ? 'bg-white' : 'bg-03'} w-full h-24 flex items-center justify-center gap-2 px-6 md:hidden md:absolute`}>
                     <Link to={`/invoice/${id}/edit`} className={`${theme === "light" ? "edit" : "darkedit"}`}>Edit</Link>
                     <button onClick={() => setConfirmDelete(true)} className='delete'>Delete</button>
-                    <Link to="/" onClick={() => {dispatch(markpaid({index: id}))}} className='paid'>Mark as Paid</Link>
+                    <Link to="/Invoiceapp-vite-tailwind-reduxtoolkit/" onClick={() => {dispatch(markpaid({index: id}))}} className='paid'>Mark as Paid</Link>
                 </div>
             </main>
         </div>
